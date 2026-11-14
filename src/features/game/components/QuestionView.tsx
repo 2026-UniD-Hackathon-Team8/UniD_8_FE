@@ -1,4 +1,4 @@
-// 문제 화면 본문: 지시문 → 질문/상황/앞선 대화 → 선택지 2개 → 안내 → (정답 공개 후) 두 AI 답 비교
+// 문제 화면 본문: 지시문 → 질문/상황/앞선 대화(채팅 말풍선) → 선택지 2개(좌우 나란히) → 안내 → (정답 공개 후) 두 AI 답 비교
 import { HINT_TEXT, QUESTION_TYPE_UI, SHORT_TAP_TEXT } from '../constants'
 import { useHoldToSelect } from '../hooks/useHoldToSelect'
 import { parseDialogue } from '../lib/dialogue'
@@ -65,24 +65,40 @@ export function QuestionView({ question, reveal, submitting, onSelect }: Props) 
   )
 }
 
+/**
+ * 질문·상황을 채팅 말풍선으로 보여 준다 (흰 말풍선 · 검정 글씨).
+ * - 답 고르기: 내가 AI에게 한 질문 → 오른쪽
+ * - 질문 고르기: 상황 안내 → 왼쪽 (고를 질문이 선택지)
+ * - 대화 고르기: 앞선 대화를 사용자는 오른쪽, AI는 왼쪽
+ */
 function Context({ question }: { question: GameQuestionItem }) {
-  if (question.questionType !== 'CHOICE_DIALOGUE') {
-    return <div className={s.prompt}>{question.prompt}</div>
+  if (question.questionType === 'CHOICE_DIALOGUE') {
+    const turns = parseDialogue(question.prompt)
+    return (
+      <div className={s.thread}>
+        <div className={s.chatLabel}>앞선 대화</div>
+        {turns ? (
+          turns.map((t, i) => (
+            <Bubble key={i} side={t.who === 'AI' ? 'left' : 'right'} who={t.who === 'AI' ? 'AI' : '나'} text={t.text} />
+          ))
+        ) : (
+          <Bubble side="left" text={question.prompt} />
+        )}
+      </div>
+    )
   }
-  const turns = parseDialogue(question.prompt)
   return (
-    <div className={s.chat}>
-      <div className={s.chatLabel}>앞선 대화</div>
-      {turns ? (
-        turns.map((t, i) => (
-          <div key={i} className={s.chatMsg}>
-            <span className={s.who}>{t.who === 'AI' ? 'AI' : '사용자'}</span>
-            {t.text}
-          </div>
-        ))
-      ) : (
-        <div className={s.chatMsg}>{question.prompt}</div>
-      )}
+    <div className={s.thread}>
+      <Bubble side={question.questionType === 'CHOICE_ANSWER' ? 'right' : 'left'} text={question.prompt} />
+    </div>
+  )
+}
+
+function Bubble({ side, who, text }: { side: 'left' | 'right'; who?: string; text: string }) {
+  return (
+    <div className={`${s.bubbleRow} ${side === 'right' ? s.bubbleRight : s.bubbleLeft}`}>
+      {who && <span className={s.bubbleWho}>{who}</span>}
+      <div className={s.bubble}>{text}</div>
     </div>
   )
 }
