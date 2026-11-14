@@ -1,7 +1,7 @@
 # features/profile — 프로필
 
 담당 범위: 마이페이지 프로필 탭(PF_01, PF_02), 닉네임 변경(ST_03).
-다른 사람 파일과 겹치지 않도록 이 폴더만 쓴다. HTTP는 `features/game/api/http.ts`의 `request()`를 가져다 쓴다.
+다른 사람 파일과 겹치지 않도록 이 폴더만 쓴다. HTTP는 `shared/api/http.ts`의 `request()`를, 계열·유형 키는 `shared/constants/domain.ts`를, 닉네임 규칙은 `shared/store/guest.ts`의 `validNickname`을 쓴다.
 
 ## 구조
 
@@ -9,7 +9,8 @@
 | --- | --- |
 | `api/types.ts` | 백엔드 실제 코드(UniD_8_BE `dev`) 기준 프로필·닉네임 변경 타입, 에러 코드 |
 | `api/profileApi.ts` | `getMyProfile`, `updateNickname` |
-| `constants.ts` | 닉네임 규칙(2~10자)과 `validateNickname` |
+| `constants.ts` | 닉네임 규칙 문구와 `validateNickname` (`validNickname` 사용) |
+| `lib/weakType.ts` | 백엔드 유형·계열 코드 → shared 키 (`weakTypeKey`, `weakCatKey`, `strongCatKey`) |
 | `mock/profileMock.ts` | 가짜 프로필 3종(유형 판정 전, 근거 맹신형, 탐정형)과 가짜 API |
 | `hooks/useProfile.ts` | 프로필 불러오기 훅 (`profile`, `loading`, `error`, `reload`, `setNickname`) |
 | `hooks/useUpdateNickname.ts` | 닉네임 변경 훅 (`update`, `saving`, `error`, `clearError`) |
@@ -41,13 +42,14 @@ if (saved) { /* 입력창 닫기 */ }
 | '최근 4주 데일리'의 '오늘 아직' | `streak.completedToday` |
 | 이름 아래 '최장 N연승' | `bestWinStreak` |
 | 통계 '푼 문제' | `weakType.progress.solved` |
-| '현재 약점 유형' | `weakType.status`가 `ANALYZING`이면 '아직 없어요', `DECIDED`면 `weakType.code` |
+| '현재 약점 유형' | `weakTypeKey(weakType)`가 `null`이면 '아직 없어요', 아니면 그 키 |
 
-유형 카드 내용(이름·대사·캐릭터)은 `features/result`의 `WEAK_TYPES[weakType.code]`를 쓴다.
+`weakTypeKey`는 `TypeKey`(`'evidence'` … `'detective'`)를 돌려주므로 `CHARACTER_SVG`, `CHARACTER_NAME`에 바로 쓴다.
+계열은 `weakCatKey`·`strongCatKey`로 바꿔 `CATS`(이름·확인 질문·색)에 쓴다.
 
 ## mock 쓰기
 
-`.env.local`에 `VITE_PROFILE_MOCK=true`를 두면 훅이 실제 API 대신 `mock/profileMock.ts`를 쓴다.
+`.env.local`에 `VITE_USE_MOCK=true`(팀 공용 값)를 두면 훅이 실제 API 대신 `mock/profileMock.ts`를 쓴다.
 다른 상태를 보려면 `setMockProfile(MOCK_PROFILE_PLAYED)`를 먼저 부른다. 닉네임을 `다믿어`로 바꾸면 중복 에러가 난다.
 
 ## 백엔드와 미정인 것
