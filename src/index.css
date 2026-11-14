@@ -1,6 +1,3 @@
-/* 전역 스타일 진입점 (공용 파일). 디자인 토큰·공용 스타일(src/shared/styles)이 들어오면 여기서 불러온다. */
-body {
-  margin: 0;
-  background: #051f20;
-  color: #f3f1ea;
-}
+/* 전역 스타일 진입점 (공용 파일). 실제 내용은 src/shared/styles/에서 관리한다. */
+@import './shared/styles/tokens.css';
+@import './shared/styles/global.css';
