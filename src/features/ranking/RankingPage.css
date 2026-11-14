@@ -1,0 +1,9 @@
+.list { list-style: none; border-radius: 14px; background: var(--g1); border: 1px solid var(--g2); overflow: hidden; }
+.lrow { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 10px; padding: 10px 14px; border-top: 1px solid var(--g2); }
+.lrow:first-child { border-top: 0; }
+.lrow .n { font-weight: 700; color: var(--tx3); }
+.lrow .nm { font-weight: 700; min-width: 0; }
+.lrow .v { font-weight: 700; }
+.lrow.me { background: var(--y-l); }
+.lrow.me .n, .lrow.me .v { color: var(--y); }
+.my-v { font-size: 18px; color: var(--y); }

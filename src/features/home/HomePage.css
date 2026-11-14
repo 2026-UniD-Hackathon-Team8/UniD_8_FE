@@ -1,0 +1,31 @@
+/* 홈 전용 스타일 */
+.hero { margin-top: 18px; border-radius: var(--radius-lg); background: var(--white); color: var(--ink); padding: 18px; position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; right: -34px; top: -34px; width: 116px; height: 116px; border-radius: 50%; background: var(--g3); }
+.hero .t-lbl { color: var(--ink3); }
+.hero .t-h1 { color: var(--ink); margin-top: 6px; position: relative; z-index: 1; }
+.hero .t-cap { color: var(--ink2); position: relative; z-index: 1; }
+.hero .btn { margin-top: 16px; background: var(--g0); color: var(--y); }
+.hero .btn.out { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px #cfcbbe; }
+.hero .btn.out.mt8 { margin-top: 8px; }
+
+.blk { margin-top: 12px; border-radius: var(--radius-lg); background: var(--g1); border: 1px solid var(--g2); padding: 16px; }
+.blk .hd { display: flex; align-items: baseline; gap: 8px; }
+.blk .hd .t-h2 { flex: 1; }
+.blk .hd .st, .blk .best { font-size: 15px; font-weight: 800; color: var(--y); }
+.blk .btn { margin-top: 14px; }
+.streak-n { color: var(--y); }
+
+.slots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+.slot { border-radius: 10px; background: var(--g2); padding: 10px 0; text-align: center; font-weight: 700; font-size: 13px; color: var(--tx2); }
+.slot small { display: block; font-size: 11px; font-weight: 600; color: var(--tx3); margin-top: 1px; }
+.slot.ok { background: var(--y); color: var(--ink); }
+.slot.ok small { color: var(--ink2); }
+.slot.no { background: transparent; box-shadow: inset 0 0 0 1.5px var(--red); color: var(--red-tx); }
+.slot.next { box-shadow: inset 0 0 0 1.5px var(--tx2); }
+
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 12px; }
+.week div { text-align: center; font-size: 11px; color: var(--tx3); }
+.week b { display: block; height: 6px; border-radius: 3px; margin-top: 4px; background: var(--g2); }
+.week b.on { background: var(--y); }
+.week b.today { box-shadow: 0 0 0 1.5px var(--tx2); }
+.slot.solved { background: var(--g3); color: var(--tx); }

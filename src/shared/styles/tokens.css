@@ -1,0 +1,55 @@
+/* =========================================================
+   다믿어? 디자인 토큰 — 색·서체·글자 크기는 여기서만 정의합니다.
+   모든 화면(A·B·C 파트)은 이 변수만 사용하세요. (색 코드 직접 입력 금지)
+   ========================================================= */
+/* 웹폰트(Courier Prime, Pretendard)는 index.html 의 <link> 로 불러옵니다. */
+
+:root {
+  /* 배경 (어두운 순) */
+  --g0: #051f20;
+  --g1: #0b2b26;
+  --g2: #163832;
+  --g3: #235347;
+
+  /* 강조색 · 종이색 */
+  --y: #fff7e6;          /* 강조(크림) */
+  --y2: #e8dcc4;
+  --y-l: rgba(255, 247, 230, 0.12);
+  --white: #f3f1ea;      /* 카드·종이 */
+  --red: #e5484d;        /* 오답·잘못된 쪽 */
+  --red-tx: #ff8d90;
+
+  /* 글자색 — 어두운 배경 위 */
+  --tx: #f3f1ea;
+  --tx2: #b7c7bf;
+  --tx3: #7d978c;
+  /* 글자색 — 밝은 카드 위 */
+  --ink: #10201c;
+  --ink2: #46514c;
+  --ink3: #848b86;
+
+  /* 5계열 색 (유형 색과 동일) */
+  --c-evidence: #3b82f6;
+  --c-context: #8b5cf6;
+  --c-logic: #ec4899;
+  --c-time: #14b8a6;
+  --c-question: #f97316;
+  --c-detective: #ffc83d;
+
+  /* 서체: 영문·숫자 = Courier Prime(타자기) / 한글 = Pretendard — 순서로 자동 분리 */
+  --font: 'Courier Prime', Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif;
+
+  /* 글자 크기 위계 */
+  --fs-h1: 24px;   /* 화면 제목 */
+  --fs-q: 20px;    /* 문제 */
+  --fs-h2: 18px;   /* 섹션 제목 */
+  --fs-spec: 16px; /* 선택지 */
+  --fs-body: 15px; /* 본문 */
+  --fs-cap: 13px;  /* 보조 설명 */
+  --fs-lbl: 12px;  /* 라벨 */
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --app-w: 460px;
+  --nav-h: 64px;
+}
