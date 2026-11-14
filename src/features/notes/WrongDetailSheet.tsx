@@ -1,6 +1,6 @@
 // WN_01 오답 상세 + WN_02 오답 메모
 import { useState } from 'react'
-import { parseDialogue, QUESTION_TYPE_UI } from '../game'
+import { parseDialogue, QUESTION_TYPE_UI, stripSpeaker } from '../game'
 import { isApiError } from '../../shared/api/http'
 import { CAT_FROM_API, CATS } from '../../shared/constants/domain'
 import type { WrongAnswerItem } from './api'
@@ -72,9 +72,9 @@ export default function WrongDetailSheet({ item, onClose, onSaved }: Props) {
 
         <div className="kv">
           <span>{isQuestion ? '내가 고른 질문' : '내가 고른 답'}</span>
-          <span className="was">{item.myChoiceText}</span>
+          <span className="was">{dialogue ? stripSpeaker(item.myChoiceText) : item.myChoiceText}</span>
           <span>{ui?.targetStamp ?? '골라낼 쪽'}</span>
-          <span className="right">{item.answerChoiceText}</span>
+          <span className="right">{dialogue ? stripSpeaker(item.answerChoiceText) : item.answerChoiceText}</span>
         </div>
 
         {isQuestion && (item.credibleAiAnswer || item.targetAiAnswer) && (
