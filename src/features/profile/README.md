@@ -18,6 +18,9 @@
 | `screens/ProfileScreen.tsx` | 마이페이지 화면. 라우터에 이 컴포넌트 하나만 붙인다 |
 | `components/NicknameSheet.tsx` | 닉네임 수정 바텀시트 (`validNickname`, `useUpdateNickname`) |
 | `components/TypeGuide.tsx` | 유형 도감 6장 (`features/result`의 `TYPE_DETAIL`, `TYPE_ORDER`, `typeCheckLine`) |
+| `components/ThoughtBubble.tsx` | 구름 모양 생각 말풍선 (재사용 가능, 위치는 `className`으로) |
+| `hooks/useLastVisit.ts` | 마지막 방문 날짜를 localStorage(`damideo:profileLastVisit`)에 저장하고 지난 일수를 돌려줌 |
+| `lib/thought.ts` | 말풍선 문구 고르기 `pickThought` (오랜만 방문 → 오늘 데일리 전 → 약점 유형) |
 | `lib/typeColor.ts` | 유형 색 (`CATS` 계열 색, 탐정형은 `--c-detective`) |
 | `styles/profile.module.css` | 마이페이지 스타일 (`tokens.css` 변수만 사용) |
 

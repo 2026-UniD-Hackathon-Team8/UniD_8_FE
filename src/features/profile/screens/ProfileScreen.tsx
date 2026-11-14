@@ -11,8 +11,11 @@ import { fetchWrongAnswers } from '../../notes/api'
 import { TYPE_DETAIL, TYPE_GUIDE_TEXT, typeCheckLine } from '../../result'
 import type { ProfileResponse } from '../api/types'
 import { NicknameSheet } from '../components/NicknameSheet'
+import { ThoughtBubble } from '../components/ThoughtBubble'
 import { TypeGuide } from '../components/TypeGuide'
+import { useLastVisit } from '../hooks/useLastVisit'
 import { useProfile } from '../hooks/useProfile'
+import { pickThought } from '../lib/thought'
 import { typeColor } from '../lib/typeColor'
 import { weakTypeKey } from '../lib/weakType'
 import s from '../styles/profile.module.css'
@@ -24,8 +27,18 @@ const TABS: { key: Tab; label: string }[] = [
   { key: 'growth', label: '나의 성장' },
 ]
 
+/** 탭을 오가도 유지되도록 화면 맨 위에서 관리하는 말풍선 상태 */
+type ThoughtState = {
+  daysAway: number | null
+  closed: boolean
+  onClose: () => void
+}
+
 export function ProfileScreen() {
   const [tab, setTab] = useState<Tab>('profile')
+  const daysAway = useLastVisit()
+  const [thoughtClosed, setThoughtClosed] = useState(false)
+  const thought: ThoughtState = { daysAway, closed: thoughtClosed, onClose: () => setThoughtClosed(true) }
 
   return (
     <main className="page">
@@ -43,12 +56,12 @@ export function ProfileScreen() {
           </button>
         ))}
       </div>
-      {tab === 'profile' ? <ProfileTab /> : <GrowthPanel />}
+      {tab === 'profile' ? <ProfileTab thought={thought} /> : <GrowthPanel />}
     </main>
   )
 }
 
-function ProfileTab() {
+function ProfileTab({ thought }: { thought: ThoughtState }) {
   const nav = useNavigate()
   const { profile, loading, error, reload, setNickname } = useProfile()
   const unauthorized = error?.code === 'USER_NOT_FOUND'
@@ -59,7 +72,7 @@ function ProfileTab() {
     nav('/start', { replace: true })
   }, [unauthorized, nav])
 
-  if (profile) return <ProfileBody profile={profile} onNicknameSaved={setNickname} />
+  if (profile) return <ProfileBody profile={profile} thought={thought} onNicknameSaved={setNickname} />
 
   if (error && !unauthorized) {
     return (
@@ -80,17 +93,27 @@ function ProfileTab() {
   )
 }
 
-function ProfileBody({ profile, onNicknameSaved }: { profile: ProfileResponse; onNicknameSaved: (n: string) => void }) {
+type BodyProps = {
+  profile: ProfileResponse
+  thought: ThoughtState
+  onNicknameSaved: (n: string) => void
+}
+
+function ProfileBody({ profile, thought, onNicknameSaved }: BodyProps) {
   const [editing, setEditing] = useState(false)
   const notes = useAsync(fetchWrongAnswers, null)
   const type = weakTypeKey(profile.weakType)
   const { progress } = profile.weakType
+  const thoughtText = thought.closed
+    ? null
+    : pickThought({ daysAway: thought.daysAway, completedToday: profile.streak.completedToday, type })
 
   return (
     <>
       <section className={`${s.card} ${s.me}`}>
         <div className={s.meAvatar}>
           <TypeAvatar type={type} size={64} />
+          {thoughtText && <ThoughtBubble text={thoughtText} onClose={thought.onClose} className={s.thought} />}
         </div>
         <div className={s.meText}>
           <div className={s.nickname}>{profile.nickname}</div>

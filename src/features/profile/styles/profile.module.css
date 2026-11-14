@@ -37,6 +37,7 @@
   padding: 18px 16px;
 }
 .meAvatar {
+  position: relative;
   flex: none;
   width: 76px;
   height: 76px;
@@ -45,6 +46,14 @@
   place-items: center;
   background: #fff;
   border: 2px solid var(--edge);
+}
+/* 캐릭터 오른쪽 위에 겹쳐 띄우는 생각 말풍선 (레이아웃을 밀지 않음) */
+.thought {
+  position: absolute;
+  left: 56px;
+  bottom: 62px;
+  z-index: 5;
+  width: max-content;
 }
 .meText {
   flex: 1;
