@@ -6,11 +6,10 @@ import { CHARACTER_NAME } from '../../../assets/characters'
 import TypeAvatar from '../../../shared/components/TypeAvatar'
 import { useAsync } from '../../../shared/hooks/useAsync'
 import { clearGuest } from '../../../shared/store/guest'
-import { GrowthPanel } from '../../growth'
+import { DailyCalendar, GrowthPanel } from '../../growth'
 import { fetchWrongAnswers } from '../../notes/api'
 import { TYPE_DETAIL, TYPE_GUIDE_TEXT, typeCheckLine } from '../../result'
 import type { ProfileResponse } from '../api/types'
-import { DailyCalendar } from '../components/DailyCalendar'
 import { NicknameSheet } from '../components/NicknameSheet'
 import { TypeGuide } from '../components/TypeGuide'
 import { useProfile } from '../hooks/useProfile'
@@ -108,7 +107,9 @@ function ProfileBody({ profile, onNicknameSaved }: { profile: ProfileResponse; o
         <Stat label="푼 문제" value={String(progress.solved)} />
       </section>
 
-      <DailyCalendar completedToday={profile.streak.completedToday} />
+      <div className={s.calendarWrap}>
+        <DailyCalendar />
+      </div>
 
       {type ? (
         <section className={`${s.card} ${s.weak}`} style={{ '--accent': typeColor(type) } as CSSProperties}>

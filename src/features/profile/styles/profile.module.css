@@ -82,28 +82,9 @@
   letter-spacing: -0.04em;
 }
 
-/* ---------- 최근 4주 데일리 ---------- */
-.calendar {
-  list-style: none;
+/* ---------- 최근 4주 데일리 (features/growth의 DailyCalendar) ---------- */
+.calendarWrap {
   margin-top: 14px;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-}
-.day {
-  aspect-ratio: 1;
-  border-radius: 8px;
-  background: var(--g2);
-}
-.dayFuture {
-  background: transparent;
-  box-shadow: inset 0 0 0 1px var(--g2);
-}
-.dayToday {
-  box-shadow: inset 0 0 0 2px var(--tx2);
-}
-.dayDone {
-  background: var(--y);
 }
 
 /* ---------- 현재 약점 유형 ---------- */

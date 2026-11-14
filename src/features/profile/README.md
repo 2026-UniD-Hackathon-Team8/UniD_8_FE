@@ -17,7 +17,6 @@
 
 | `screens/ProfileScreen.tsx` | 마이페이지 화면. 라우터에 이 컴포넌트 하나만 붙인다 |
 | `components/NicknameSheet.tsx` | 닉네임 수정 바텀시트 (`validNickname`, `useUpdateNickname`) |
-| `components/DailyCalendar.tsx` | 최근 4주 데일리 달력 자리 (데이터 연결 전) |
 | `components/TypeGuide.tsx` | 유형 도감 6장 (`features/result`의 `TYPE_DETAIL`, `TYPE_ORDER`, `typeCheckLine`) |
 | `lib/typeColor.ts` | 유형 색 (`CATS` 계열 색, 탐정형은 `--c-detective`) |
 | `styles/profile.module.css` | 마이페이지 스타일 (`tokens.css` 변수만 사용) |
@@ -27,7 +26,7 @@
 `App.tsx`의 `/profile`(하단 탭 화면, `AppLayout` 안)에 `<ProfileScreen />`을 붙인다. 상단 바·하단 탭은 `AppLayout`이 그린다.
 
 - 탭: [프로필] [나의 성장]. 나의 성장은 `features/growth`의 `<GrowthPanel />`(props 없음, 스스로 `/api/users/me/growth`를 부른다)
-- 프로필 탭: 프로필 카드(닉네임 수정) → 통계 3칸 → 최근 4주 데일리(자리만) → 현재 약점 유형 → 오답노트 바로가기 → 유형 도감
+- 프로필 탭: 프로필 카드(닉네임 수정) → 통계 3칸 → 최근 4주 데일리(`features/growth`의 `<DailyCalendar />`) → 현재 약점 유형 → 오답노트 바로가기 → 유형 도감
 - 오답 개수는 프로필 응답에 없어서 `features/notes/api`의 `fetchWrongAnswers`로 센다.
 - 닉네임을 바꾸면 `shared/store/guest`의 `saveNickname`으로 저장된 닉네임도 바꾼다.
 - 설정 영역(캡처 09 아래, 10)은 아직 없다.
@@ -72,5 +71,5 @@ if (saved) { /* 입력창 닫기 */ }
 - 이름 아래 '게스트' 표시: 프로필 응답에 게스트 여부가 없다. 지금은 모두 게스트라 고정 문구로 둬도 된다.
 - '오답노트 N문제': 프로필 응답에 없다. 오답노트 조회(`/api/users/me/wrong-answers`)에서 센다.
 - '푼 문제'는 처음 푼 답 수(`progress.solved`)다. 다시 푼 문제는 세지 않는다.
-- '최근 4주 데일리'는 데일리 달력 API(`/api/users/me/daily-calendar`, PF_05)로 따로 받는다.
+- '최근 4주 데일리'는 `features/growth`의 `DailyCalendar`가 데일리 달력 API(`/api/users/me/daily-calendar`, PF_05)를 직접 부른다.
 - '나의 성장' 탭은 `/api/users/me/growth`(PF_03)로 따로 받는다.
