@@ -26,6 +26,16 @@ export const TYPE_DETAIL: Record<TypeKey, TypeDetail> = {
   detective: { mark: '!', description: '꼿꼿하게 서서 탐정 모자 + 돋보기, 한 팔을 위로', quote: '찾았다!' },
 }
 
+/** 결과 화면에서 확인 질문 앞에 붙이는 상황 문구 */
+export const CHECK_LEAD: Record<TypeKey, string> = {
+  evidence: '구체적인 숫자나 출처를 보면 먼저 물어보세요',
+  context: '맞는 말처럼 들려도 딱 잘라 말하면 먼저 물어보세요',
+  logic: "'그래서', '때문에'로 이어지는 설명을 보면 먼저 물어보세요",
+  time: "'최근', '현재' 같은 말을 보면 먼저 물어보세요",
+  question: 'AI에게 묻기 전에 내 질문부터 물어보세요',
+  detective: '지금처럼 모든 답을 한 번 더 따져 보세요',
+}
+
 /** 탐정형 카드의 확인 질문 자리에 쓰는 강점 문구 */
 export const DETECTIVE_STRENGTH = '모든 계열 강점'
 

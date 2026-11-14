@@ -16,11 +16,24 @@
 | `api/types.ts` | 백엔드 실제 코드(UniD_8_BE `dev`) 기준 판 결과 응답 타입 |
 | `api/resultApi.ts` | `getGameResult(gameSessionId)` (`USE_MOCK`이면 mock) |
 | `constants.ts` | shared에 없는 유형 정보: 설명·대사·`?`/`!` 표시(`TYPE_DETAIL`), 탐정형 강점 문구, 도감 순서, 도감 문구 |
-| `lib/resultView.ts` | `mostWrongCatKey`, `wrongCountByCat` (백엔드 계열 코드 → `CatKey`) |
+| `lib/resultView.ts` | `mostWrongCatKey`, `strongCatKeys`, `wrongCountByCat` (백엔드 계열 코드 → `CatKey`) |
 | `mock/resultMock.ts` | 가짜 결과 2종(근거 계열 4개 오답, 다 맞힌 판) |
+| `lib/judgeType.ts` | 결과 화면 유형 판정 `judgeResultType` (기획안 임시 규칙) |
+| `lib/share.ts` | 공유: `navigator.share`, 없으면 클립보드 복사 |
 | `hooks/useGameResult.ts` | `useAsync(getGameResult, gameSessionId)` → `data`, `loading`, `error`, `reload` |
+| `screens/ResultScreen.tsx` | 판 결과 화면. 라우터에 이 컴포넌트 하나만 붙인다 |
+| `styles/result.module.css` | 결과 화면 스타일 (`tokens.css` 변수만 사용) |
 
-화면 컴포넌트는 C의 디자인 토큰·기본 컴포넌트가 나온 뒤 `components/`에 만든다.
+## 결과 화면
+
+`App.tsx`의 `/games/:gameSessionId/result`에 `<ResultScreen />`을 붙인다. 하단 탭 없는 화면이다.
+
+- 위에서부터: 유형 캐릭터·이름·대사 → 점수 → 많이 틀린 계열 → 💪 강점(안 틀린 계열, 없으면 생략) → 확인 질문 → 버튼
+- 버튼: 오답노트 보기(`/notes`), 약한 계열 다시 풀기(`/play/weak`, `WEAKNESS_RETRY` 판), 공유하기
+- 잘못된 id, 로딩, 에러(`GAME_NOT_COMPLETED`, 없는 판·남의 판, 그 밖) 화면이 있다. `USER_NOT_FOUND`는 `clearGuest()` 후 `/start`로 보낸다.
+
+유형 판정은 `judgeResultType` 하나에 있다. 틀린 문제가 `DETECTIVE_MAX_WRONG`(1) 이하면 탐정형, 아니면 가장 많이 틀린 계열의 유형.
+백엔드가 판 결과에 유형을 주게 되면 이 함수만 바꾼다.
 
 ## 흐름
 
@@ -63,4 +76,6 @@ TYPE_ORDER.map((type) => ({
 
 - 도감 문구(캡처 08)와 백엔드 판정 규칙이 다르다. 캡처는 '1문제 이하로 틀리면 탐정형', '실전 한 판을 마치면 유형이 정해짐'인데,
   백엔드는 '20문제 이상 풀어야 유형이 열리고, 모든 계열 정답률이 80% 이상이면 탐정형'이다.
-- 탐정형 색: `CATS`는 5계열 색만 있다. 탐정형 이름 색이 필요하면 shared에 추가해야 한다.
+- 탐정형 색: `CATS`에는 5계열 색만 있어서 화면에서 `var(--c-detective)`를 직접 쓴다.
+- 약한 계열 다시 풀기: 백엔드 `WEAKNESS_RETRY`는 이번 판이 아니라 사용자 전체 계열별 정답률로 출제 비중을 정한다. 특정 계열을 지정하는 API는 없다.
+- 확인 질문 앞 상황 문구(`CHECK_LEAD`)는 근거 외 계열과 탐정형 문구를 임시로 썼다. 기획 확인이 필요하다.
