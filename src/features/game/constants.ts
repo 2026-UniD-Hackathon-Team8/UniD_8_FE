@@ -22,7 +22,7 @@ type QuestionTypeUi = {
 export const QUESTION_TYPE_UI: Record<QuestionType, QuestionTypeUi> = {
   CHOICE_ANSWER: {
     name: '답 고르기',
-    task: 'AI가 지어낸 답을\n고르세요',
+    task: 'AI가 만들어낸 오류를\n고르세요',
     targetStamp: '지어낸 답',
     credibleStamp: '사실',
   },
