@@ -67,6 +67,9 @@ export async function request<T>(
     throw new ApiError(0, 'NETWORK_ERROR', '네트워크 연결을 확인해주세요.')
   }
 
+  // 204 No Content: 본문이 없는 정상 응답 (예: 진행 중인 판이 없을 때 GET /api/games/current)
+  if (res.status === 204) return undefined as T
+
   let json: ApiEnvelope<T> | null = null
   try {
     json = (await res.json()) as ApiEnvelope<T>
