@@ -424,3 +424,14 @@
   padding: 80px 18px;
   color: var(--gm-tx3);
 }
+
+/* ---------- 포인트 글꼴: 숫자·수법 이름만 타자기체 (본문은 Pretendard) ---------- */
+.cnt,
+.run,
+.big {
+  font-family: var(--font-type, 'Courier Prime', monospace);
+}
+.tag {
+  font-family: var(--font-type, 'Courier Prime', monospace);
+  word-spacing: -0.3em;
+}

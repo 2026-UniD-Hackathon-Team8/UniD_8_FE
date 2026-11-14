@@ -16,13 +16,13 @@ const META: Record<RankingKind, { tab: string; desc: string; unit: string }> = {
 function Row({ r, kind, me }: { r: RankRow; kind: RankingKind; me: boolean }) {
   return (
     <li className={`lrow ${me ? 'me' : ''}`}>
-      <span className="n">{r.rank === null ? '–' : String(r.rank).padStart(2, '0')}</span>
+      <span className="n type">{r.rank === null ? '–' : String(r.rank).padStart(2, '0')}</span>
       <span className="nm">
         {r.nickname}
         {me ? ' (나)' : ''}
         {kind === 'daily' && r.sub !== undefined && <span className="t-cap"> · 최장 {r.sub}일</span>}
       </span>
-      <span className="v">
+      <span className="v type">
         {r.value}
         {META[kind].unit}
       </span>

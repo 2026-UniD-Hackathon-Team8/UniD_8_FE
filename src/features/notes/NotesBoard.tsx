@@ -123,7 +123,7 @@ export default function NotesBoard({ items, title, showTop, footer, onOpen }: Pr
               >
                 <div className="pin" />
                 <div className="q">{cardText(it.prompt)}</div>
-                <div className="tr">{it.tacticName}</div>
+                <div className="tr type">{it.tacticName}</div>
                 {it.memo && <div className="sticky">{reason ?? text}</div>}
               </button>
             )

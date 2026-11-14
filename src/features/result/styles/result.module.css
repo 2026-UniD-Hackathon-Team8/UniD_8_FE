@@ -120,6 +120,7 @@
   letter-spacing: -0.03em;
 }
 .num {
+  font-family: var(--font-type);
   color: var(--y);
   letter-spacing: -0.04em;
 }

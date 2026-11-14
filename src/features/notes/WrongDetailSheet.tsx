@@ -48,7 +48,7 @@ export default function WrongDetailSheet({ item, onClose, onSaved }: Props) {
     <div className="modal" onClick={(e) => e.target === e.currentTarget && onClose()} role="dialog" aria-modal="true">
       <div className="file">
         <div className="row">
-          <span className="tg">
+          <span className="tg type">
             {cat && <i style={{ background: CATS[cat].color }} />}
             {item.categoryName} · {item.tacticName}
           </span>

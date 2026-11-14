@@ -27,7 +27,9 @@ a { color: var(--y); }
 .t-h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.35; }
 .t-cap { font-size: var(--fs-cap); color: var(--tx3); line-height: 1.5; }
 .t-lbl { font-size: var(--fs-lbl); font-weight: 700; letter-spacing: 0.01em; color: var(--tx3); }
-.num { font-weight: 700; letter-spacing: -0.04em; }
+.num { font-family: var(--font-type); font-weight: 700; letter-spacing: -0.04em; }
+/* 포인트 글꼴(타자기체): 수법 이름·짧은 라벨. Courier 공백이 넓어서 단어 사이를 좁힌다 */
+.type { font-family: var(--font-type); word-spacing: -0.3em; }
 
 /* 버튼 */
 .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; border-radius: var(--radius-md);

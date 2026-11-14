@@ -19,7 +19,7 @@ export default function TopBar({ streak, todayDone, typeKey }: Props) {
       <div className="spacer" />
       <div className={`pill ${todayDone ? 'on' : ''}`} title="데일리 연속 기록">
         <span className="d" />
-        연속 {streak}일
+        연속 <span className="num">{streak}일</span>
       </div>
       <Link to="/profile" className="avbtn" aria-label="프로필">
         <TypeAvatar type={typeKey} size={30} />

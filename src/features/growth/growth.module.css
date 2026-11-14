@@ -251,3 +251,14 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* ---------- 포인트 글꼴: 숫자만 타자기체 (본문은 Pretendard) ---------- */
+.val,
+.axisText,
+.lockedBig,
+.tip {
+  font-family: var(--font-type);
+}
+.tip span {
+  font-family: var(--font);
+}
