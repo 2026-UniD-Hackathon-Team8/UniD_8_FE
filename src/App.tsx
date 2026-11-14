@@ -14,15 +14,6 @@ import { ProfileScreen } from './features/profile'
 import { ResultScreen } from './features/result'
 import AppLayout from './shared/layouts/AppLayout'
 
-function Placeholder({ name }: { name: string }) {
-  return (
-    <main className="page">
-      <h1 className="t-h1 mt16">{name}</h1>
-      <p className="t-cap mt8">개발 중인 화면이에요.</p>
-    </main>
-  )
-}
-
 export default function App() {
   return (
     <BrowserRouter>
