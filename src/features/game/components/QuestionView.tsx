@@ -1,7 +1,7 @@
 // 문제 화면 본문: 지시문 → 질문/상황/앞선 대화(채팅 말풍선) → 선택지 2개(좌우 나란히) → 안내 → (정답 공개 후) 두 AI 답 비교
 import { HINT_TEXT, QUESTION_TYPE_UI, SHORT_TAP_TEXT } from '../constants'
 import { useHoldToSelect } from '../hooks/useHoldToSelect'
-import { parseDialogue } from '../lib/dialogue'
+import { splitDialogue, stripSpeaker } from '../lib/dialogue'
 import { aiAnswersByPos, hasAiAnswers, stampFor } from '../lib/reveal'
 import type { AnswerPos, AnswerRevealResponse, GameQuestionItem } from '../api/types'
 import { ChoiceCard } from './ChoiceCard'
@@ -23,7 +23,9 @@ export function QuestionView({ question, reveal, submitting, onSelect }: Props) 
   const isQuestionPick = question.questionType === 'CHOICE_QUESTION'
   const optionText = (pos: AnswerPos) => {
     const t = pos === 'A' ? question.optionA : question.optionB
-    return isQuestionPick ? `“${t}”` : t
+    if (isQuestionPick) return `“${t}”`
+    // 대화 고르기 선택지는 이어지는 AI 말 하나: "AI: "…"" 앞머리·따옴표를 뗀다
+    return question.questionType === 'CHOICE_DIALOGUE' ? stripSpeaker(t) : t
   }
 
   return (
@@ -73,17 +75,19 @@ export function QuestionView({ question, reveal, submitting, onSelect }: Props) 
  */
 function Context({ question }: { question: GameQuestionItem }) {
   if (question.questionType === 'CHOICE_DIALOGUE') {
-    const turns = parseDialogue(question.prompt)
+    const { intro, turns, note } = splitDialogue(question.prompt)
     return (
       <div className={s.thread}>
         <div className={s.chatLabel}>앞선 대화</div>
-        {turns ? (
+        {intro && <div className={s.dialogNote}>{intro}</div>}
+        {turns.length ? (
           turns.map((t, i) => (
             <Bubble key={i} side={t.who === 'AI' ? 'left' : 'right'} who={t.who === 'AI' ? 'AI' : '나'} text={t.text} />
           ))
         ) : (
           <Bubble side="left" text={question.prompt} />
         )}
+        {note && <div className={s.dialogNote}>{note}</div>}
       </div>
     )
   }
