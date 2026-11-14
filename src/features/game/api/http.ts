@@ -78,5 +78,9 @@ export async function request<T>(
   if (json && !json.success) {
     throw new ApiError(res.status, json.code, json.message, json.errors ?? {})
   }
+  // 502·503·504에 JSON 본문이 없으면 백엔드까지 못 간 것 (로컬 백엔드가 꺼져 있어 Vite 프록시가 502를 주는 경우 등)
+  if ([502, 503, 504].includes(res.status)) {
+    throw new ApiError(res.status, 'NETWORK_ERROR', '서버에 연결할 수 없어요. 잠시 후 다시 시도해주세요.')
+  }
   throw new ApiError(res.status, 'INTERNAL_ERROR', '서버에서 문제가 발생했습니다.')
 }
