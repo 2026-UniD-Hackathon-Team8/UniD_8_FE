@@ -18,9 +18,11 @@
 | `screens/ProfileScreen.tsx` | 마이페이지 화면. 라우터에 이 컴포넌트 하나만 붙인다 |
 | `components/NicknameSheet.tsx` | 닉네임 수정 바텀시트 (`validNickname`, `useUpdateNickname`) |
 | `components/TypeGuide.tsx` | 유형 도감 6장 (`features/result`의 `TYPE_DETAIL`, `TYPE_ORDER`, `typeCheckLine`) |
-| `components/ThoughtBubble.tsx` | 구름 모양 생각 말풍선 (재사용 가능, 위치는 `className`으로) |
+| `components/ThoughtBubble.tsx` | 구름 모양 생각 말풍선 (재사용 가능, 위치는 `className`으로, `onClick`이 있으면 버튼) |
+| `thoughtLines.ts` | 말풍선 대사 모음: 상황별(`daily`, `comeback`, `newbie`), 유형별(`TypeKey` 6유형) |
+| `hooks/useRotatingLine.ts` | 대사 묶음을 6초마다 페이드로 돌림 (처음 무작위, 같은 대사 연속 없음, 누르면 바로 다음) |
 | `hooks/useLastVisit.ts` | 마지막 방문 날짜를 localStorage(`damideo:profileLastVisit`)에 저장하고 지난 일수를 돌려줌 |
-| `lib/thought.ts` | 말풍선 문구 고르기 `pickThought` (오랜만 방문 → 오늘 데일리 전 → 약점 유형) |
+| `lib/thought.ts` | 대사 묶음 고르기 `pickThoughtGroup` (3일 이상 만의 방문 → 오늘 데일리 전 → 유형(탐정형 포함) → 견습) |
 | `lib/typeColor.ts` | 유형 색 (`CATS` 계열 색, 탐정형은 `--c-detective`) |
 | `styles/profile.module.css` | 마이페이지 스타일 (`tokens.css` 변수만 사용) |
 

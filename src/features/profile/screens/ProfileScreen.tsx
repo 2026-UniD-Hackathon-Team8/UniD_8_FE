@@ -15,7 +15,8 @@ import { ThoughtBubble } from '../components/ThoughtBubble'
 import { TypeGuide } from '../components/TypeGuide'
 import { useLastVisit } from '../hooks/useLastVisit'
 import { useProfile } from '../hooks/useProfile'
-import { pickThought } from '../lib/thought'
+import { useRotatingLine } from '../hooks/useRotatingLine'
+import { pickThoughtGroup } from '../lib/thought'
 import { typeColor } from '../lib/typeColor'
 import { weakTypeKey } from '../lib/weakType'
 import s from '../styles/profile.module.css'
@@ -27,18 +28,11 @@ const TABS: { key: Tab; label: string }[] = [
   { key: 'growth', label: '나의 성장' },
 ]
 
-/** 탭을 오가도 유지되도록 화면 맨 위에서 관리하는 말풍선 상태 */
-type ThoughtState = {
-  daysAway: number | null
-  closed: boolean
-  onClose: () => void
-}
 
 export function ProfileScreen() {
   const [tab, setTab] = useState<Tab>('profile')
+  // 탭을 오가도 '오랜만' 판단이 유지되도록 화면 맨 위에서 한 번만 읽는다
   const daysAway = useLastVisit()
-  const [thoughtClosed, setThoughtClosed] = useState(false)
-  const thought: ThoughtState = { daysAway, closed: thoughtClosed, onClose: () => setThoughtClosed(true) }
 
   return (
     <main className="page">
@@ -56,12 +50,12 @@ export function ProfileScreen() {
           </button>
         ))}
       </div>
-      {tab === 'profile' ? <ProfileTab thought={thought} /> : <GrowthPanel />}
+      {tab === 'profile' ? <ProfileTab daysAway={daysAway} /> : <GrowthPanel />}
     </main>
   )
 }
 
-function ProfileTab({ thought }: { thought: ThoughtState }) {
+function ProfileTab({ daysAway }: { daysAway: number | null }) {
   const nav = useNavigate()
   const { profile, loading, error, reload, setNickname } = useProfile()
   const unauthorized = error?.code === 'USER_NOT_FOUND'
@@ -72,7 +66,7 @@ function ProfileTab({ thought }: { thought: ThoughtState }) {
     nav('/start', { replace: true })
   }, [unauthorized, nav])
 
-  if (profile) return <ProfileBody profile={profile} thought={thought} onNicknameSaved={setNickname} />
+  if (profile) return <ProfileBody profile={profile} daysAway={daysAway} onNicknameSaved={setNickname} />
 
   if (error && !unauthorized) {
     return (
@@ -95,25 +89,23 @@ function ProfileTab({ thought }: { thought: ThoughtState }) {
 
 type BodyProps = {
   profile: ProfileResponse
-  thought: ThoughtState
+  daysAway: number | null
   onNicknameSaved: (n: string) => void
 }
 
-function ProfileBody({ profile, thought, onNicknameSaved }: BodyProps) {
+function ProfileBody({ profile, daysAway, onNicknameSaved }: BodyProps) {
   const [editing, setEditing] = useState(false)
   const notes = useAsync(fetchWrongAnswers, null)
   const type = weakTypeKey(profile.weakType)
   const { progress } = profile.weakType
-  const thoughtText = thought.closed
-    ? null
-    : pickThought({ daysAway: thought.daysAway, completedToday: profile.streak.completedToday, type })
+  const thought = pickThoughtGroup({ daysAway, completedToday: profile.streak.completedToday, type })
 
   return (
     <>
       <section className={`${s.card} ${s.me}`}>
         <div className={s.meAvatar}>
           <TypeAvatar type={type} size={64} />
-          {thoughtText && <ThoughtBubble text={thoughtText} onClose={thought.onClose} className={s.thought} />}
+          <ProfileThought key={thought.key} lines={thought.lines} />
         </div>
         <div className={s.meText}>
           <div className={s.nickname}>{profile.nickname}</div>
@@ -184,4 +176,10 @@ function Stat({ label, value }: { label: string; value: string }) {
       <div className={s.statValue}>{value}</div>
     </div>
   )
+}
+
+/** 대사 묶음이 바뀌면 key로 새로 그려서 처음부터 무작위로 시작한다 */
+function ProfileThought({ lines }: { lines: readonly string[] }) {
+  const { line, fading, next } = useRotatingLine(lines)
+  return <ThoughtBubble text={line} fading={fading} onClick={next} actionLabel="누르면 다음 말" className={s.thought} />
 }

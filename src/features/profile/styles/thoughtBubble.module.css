@@ -6,8 +6,10 @@
   max-width: 160px;
   padding: 18px 20px 20px;
   text-align: center;
-  cursor: pointer;
   animation: floatIn 0.36s ease-out both;
+}
+.clickable {
+  cursor: pointer;
 }
 .bubble:focus-visible {
   outline: 2px solid var(--yellow);
@@ -38,6 +40,11 @@
   letter-spacing: -0.02em;
   color: var(--ink);
   word-break: keep-all;
+  transition: opacity 0.2s ease;
+}
+/* 대사를 바꿀 때 글자만 잠깐 사라졌다가 다시 나타난다 */
+.fading .text {
+  opacity: 0;
 }
 
 /* 캐릭터 쪽(아래 왼쪽)으로 이어지는 꼬리 */
@@ -74,5 +81,8 @@
 @media (prefers-reduced-motion: reduce) {
   .bubble {
     animation: none;
+  }
+  .text {
+    transition: none;
   }
 }
