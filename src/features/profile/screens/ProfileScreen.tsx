@@ -6,6 +6,7 @@ import { CHARACTER_NAME } from '../../../assets/characters'
 import TypeAvatar from '../../../shared/components/TypeAvatar'
 import { useAsync } from '../../../shared/hooks/useAsync'
 import { clearGuest } from '../../../shared/store/guest'
+import { GrowthPanel } from '../../growth'
 import { fetchWrongAnswers } from '../../notes/api'
 import { TYPE_DETAIL, TYPE_GUIDE_TEXT, typeCheckLine } from '../../result'
 import type { ProfileResponse } from '../api/types'
@@ -43,17 +44,8 @@ export function ProfileScreen() {
           </button>
         ))}
       </div>
-      {tab === 'profile' ? <ProfileTab /> : <GrowthTab />}
+      {tab === 'profile' ? <ProfileTab /> : <GrowthPanel />}
     </main>
-  )
-}
-
-function GrowthTab() {
-  return (
-    <div className={`card mt16 ${s.empty}`}>
-      <p className="t-h2">준비 중이에요</p>
-      <p className="t-cap mt4">계열별 정답률과 성장 기록을 곧 보여 드릴게요.</p>
-    </div>
   )
 }
 
