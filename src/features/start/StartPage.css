@@ -1,3 +1,7 @@
 .gate { min-height: 100vh; display: flex; flex-direction: column; padding: 0 22px 32px; }
-.gate-art { width: 100%; max-width: 340px; margin: 36px auto 0; }
-.center { text-align: center; }
+/* 로고 + 한 줄 소개: 위쪽 가운데 */
+.gate-brand { margin-top: 16vh; display: flex; flex-direction: column; align-items: center; }
+.gate-logo { display: block; width: 72%; max-width: 320px; height: auto; }
+.gate-tag { margin-top: 18px; font-size: 18px; font-weight: 800; letter-spacing: -0.03em; color: var(--white); text-align: center; }
+.gate-tag b { color: var(--c-detective); }
+.gate label.t-lbl { font-size: 15px; font-weight: 600; color: var(--tx2); }
