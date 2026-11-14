@@ -7,6 +7,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import HomePage from './features/home/HomePage'
 import RankingPage from './features/ranking/RankingPage'
 import StartPage from './features/start/StartPage'
+import { PlayPage, StreakPage, WeakPlayPage } from './features/game/routes'
 import AppLayout from './shared/layouts/AppLayout'
 
 function Placeholder({ name }: { name: string }) {
@@ -32,9 +33,9 @@ export default function App() {
         </Route>
         {/* 문제 풀이·결과 화면 (하단 탭 없음) */}
         <Route path="/daily" element={<Placeholder name="오늘의 5문제" />} />
-        <Route path="/play" element={<Placeholder name="실전" />} />
-        <Route path="/play/weak" element={<Placeholder name="약점 재도전" />} />
-        <Route path="/streak" element={<Placeholder name="연승 챌린지" />} />
+        <Route path="/play" element={<PlayPage />} />
+        <Route path="/play/weak" element={<WeakPlayPage />} />
+        <Route path="/streak" element={<StreakPage />} />
         <Route path="/games/:gameSessionId/result" element={<Placeholder name="실전 결과" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
