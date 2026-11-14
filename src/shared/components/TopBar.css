@@ -6,4 +6,6 @@
   border-radius: 99px; background: var(--g1); border: 1px solid var(--g2); }
 .pill .d { width: 7px; height: 7px; border-radius: 50%; background: var(--tx3); }
 .pill.on .d { background: var(--y); }
+/* 상단 바는 숫자 포인트 글꼴(.num) 예외: 다른 글자와 같은 본문 글꼴로 */
+.topbar .num { font-family: var(--font); letter-spacing: normal; }
 .avbtn { width: 36px; height: 36px; border-radius: 50%; background: var(--g2); border: 1px solid var(--g3); display: grid; place-items: center; overflow: hidden; }
