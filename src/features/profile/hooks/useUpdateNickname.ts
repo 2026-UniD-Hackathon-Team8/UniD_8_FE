@@ -7,6 +7,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ApiError } from '../../game/api/http'
 import { updateNickname } from '../api/profileApi'
+import { validateNickname } from '../constants'
 import { updateMockNickname, USE_PROFILE_MOCK } from '../mock/profileMock'
 
 const sendNickname = USE_PROFILE_MOCK ? updateMockNickname : updateNickname
@@ -29,8 +30,9 @@ export function useUpdateNickname({ onSuccess }: Options = {}) {
 
   const update = useCallback(async (nickname: string): Promise<string | null> => {
     const trimmed = nickname.trim()
-    if (!trimmed) {
-      setError(new ApiError(400, 'INVALID_INPUT', '닉네임을 입력해주세요.', { nickname: '닉네임을 입력해주세요.' }))
+    const invalid = validateNickname(trimmed)
+    if (invalid) {
+      setError(new ApiError(400, 'INVALID_INPUT', invalid, { nickname: invalid }))
       return null
     }
 
