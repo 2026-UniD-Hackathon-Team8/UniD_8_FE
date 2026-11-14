@@ -20,6 +20,7 @@ export default function DailyPage() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const busyRef = useRef(false)
 
   const fail = useCallback((e: unknown) => {
@@ -35,6 +36,7 @@ export default function DailyPage() {
     setLoading(true)
     setError(null)
     setReveal(null)
+    setSubmitError(null)
     try {
       const today = await getTodayDaily()
       setDaily(today)
@@ -55,7 +57,7 @@ export default function DailyPage() {
     if (!daily || !current || busyRef.current || reveal) return
     busyRef.current = true
     setSubmitting(true)
-    setError(null)
+    setSubmitError(null)
     try {
       const r = await submitDailyAnswer(current.questionId, pos)
       setReveal(r)
@@ -67,7 +69,8 @@ export default function DailyPage() {
         questions: prev.questions.map((q) => q.questionId === r.questionId ? { ...q, answered: true, selectedPos: r.selectedPos } : q),
       } : prev)
     } catch (e) {
-      fail(e)
+      if (e instanceof ApiError && e.code === 'USER_NOT_FOUND') fail(e)
+      else setSubmitError(e instanceof Error ? e.message : '답을 제출하지 못했어요. 다시 시도해 주세요.')
     } finally {
       busyRef.current = false
       setSubmitting(false)
@@ -151,6 +154,7 @@ export default function DailyPage() {
     <PlayHeader backLabel="오늘의 5문제" onBack={() => nav('/')}>
       <ProgressSegments states={progress} index={displayed.seq} total={daily.totalCount} />
     </PlayHeader>
+    {submitError && <div className={s.error} role="alert">{submitError}</div>}
     <QuestionView key={displayed.questionId} question={displayed} reveal={reveal} submitting={submitting} onSelect={(pos) => void submit(pos)} />
     {reveal && <RevealSheet reveal={reveal} questionType={displayed.questionType} nextLabel={reveal.completed ? '오늘 결과 보기' : '다음 문제'} onNext={() => void next()} />}
   </div>
