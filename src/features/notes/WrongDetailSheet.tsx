@@ -98,7 +98,7 @@ export default function WrongDetailSheet({ item, onClose, onSaved }: Props) {
           <div className="v">{item.checkQuestion}</div>
         </div>
         <p className="exp">{item.explanation}</p>
-        {item.source && <p className="src">출처 · {item.source}</p>}
+        {item.source && <Source source={item.source} />}
 
         <h3 className="t-h2 mt16">왜 이 답을 믿었나요?</h3>
         <p className="t-cap">이유를 하나 고르고, 하고 싶은 말이 있으면 적어 두세요.</p>
@@ -137,5 +137,30 @@ export default function WrongDetailSheet({ item, onClose, onSaved }: Props) {
         </button>
       </div>
     </div>
+  )
+}
+
+/** http(s) 주소면 새 탭으로 여는 링크(도메인만 표시), 아니면 글자 그대로 */
+function Source({ source }: { source: string }) {
+  const text = source.trim()
+  let host: string | null = null
+  if (/^https?:\/\//i.test(text)) {
+    try {
+      host = new URL(text).hostname.replace(/^www\./, '')
+    } catch {
+      host = null
+    }
+  }
+  return (
+    <p className="src">
+      출처 ·{' '}
+      {host ? (
+        <a href={text} target="_blank" rel="noopener noreferrer" title={text}>
+          {host} ↗
+        </a>
+      ) : (
+        text
+      )}
+    </p>
   )
 }

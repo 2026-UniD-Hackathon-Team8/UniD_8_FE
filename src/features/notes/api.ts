@@ -68,7 +68,7 @@ const MOCK: WrongAnswerItem[] = [
     tacticName: '가짜 출처',
     explanation: "'외래 음식명 표기 지침'은 존재하지 않는 문서예요. 실제 기관명에 가짜 문서를 붙였어요.",
     checkQuestion: '근거가 실제로 있나?',
-    source: '국립국어원',
+    source: 'https://www.korean.go.kr',
     memo: '출처·기관명이 있어서',
   },
   {
@@ -121,7 +121,7 @@ const MOCK: WrongAnswerItem[] = [
     tacticName: '철 지난 정보',
     explanation: '2030년은 수도권 밖 지역의 시행 시점이에요. 수도권은 2026년 1월부터 이미 시행 중이에요.',
     checkQuestion: '언제 기준인가?',
-    source: '국가법령정보센터 · 폐기물관리법 시행규칙',
+    source: 'https://www.law.go.kr/법령/폐기물관리법시행규칙',
   },
   {
     ...base,
