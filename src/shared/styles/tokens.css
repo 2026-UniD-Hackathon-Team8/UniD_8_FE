@@ -36,8 +36,10 @@
   --c-question: #f97316;
   --c-detective: #ffc83d;
 
-  /* 서체: 영문·숫자 = Courier Prime(타자기) / 한글 = Pretendard — 순서로 자동 분리 */
-  --font: 'Courier Prime', Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  /* 서체: 본문은 Pretendard. Courier Prime(타자기)은 숫자·수법 이름 같은 포인트에만 (.num, .type)
+     Courier Prime이 1순위면 한글 사이 공백까지 Courier 폭으로 넓어져서 본문에서는 뺐다 */
+  --font: Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --font-type: 'Courier Prime', Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif;
 
   /* 글자 크기 위계 */
   --fs-h1: 24px;   /* 화면 제목 */
