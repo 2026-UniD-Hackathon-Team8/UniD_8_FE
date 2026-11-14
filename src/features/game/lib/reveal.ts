@@ -42,6 +42,6 @@ export function revealSubline(type: QuestionType, correctPos: AnswerPos): string
       return `${correctPos}에서 AI가 말을 바꿨어요`
     case 'CHOICE_ANSWER':
     default:
-      return `${correctPos}가 AI가 지어낸 답이었어요`
+      return `${correctPos}가 AI가 만들어낸 오류였어요`
   }
 }
