@@ -5,12 +5,12 @@
 //   const { update, saving, error } = useUpdateNickname({ onSuccess: setNickname })
 //   <button disabled={saving} onClick={() => update(input)}>저장</button>
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ApiError } from '../../game/api/http'
+import { ApiError, USE_MOCK } from '../../../shared/api/http'
 import { updateNickname } from '../api/profileApi'
 import { validateNickname } from '../constants'
-import { updateMockNickname, USE_PROFILE_MOCK } from '../mock/profileMock'
+import { updateMockNickname } from '../mock/profileMock'
 
-const sendNickname = USE_PROFILE_MOCK ? updateMockNickname : updateNickname
+const sendNickname = USE_MOCK ? updateMockNickname : updateNickname
 
 type Options = {
   onSuccess?: (nickname: string) => void

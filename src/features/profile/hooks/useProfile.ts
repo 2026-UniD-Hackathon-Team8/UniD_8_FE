@@ -3,12 +3,12 @@
 // 사용 예:
 //   const { profile, loading, error, reload, setNickname } = useProfile()
 import { useCallback, useEffect, useState } from 'react'
-import { ApiError } from '../../game/api/http'
+import { ApiError, USE_MOCK } from '../../../shared/api/http'
 import { getMyProfile } from '../api/profileApi'
 import type { ProfileResponse } from '../api/types'
-import { getMockProfile, USE_PROFILE_MOCK } from '../mock/profileMock'
+import { getMockProfile } from '../mock/profileMock'
 
-const fetchProfile = USE_PROFILE_MOCK ? getMockProfile : getMyProfile
+const fetchProfile = USE_MOCK ? getMockProfile : getMyProfile
 
 export function useProfile() {
   const [profile, setProfile] = useState<ProfileResponse | null>(null)
