@@ -83,3 +83,36 @@ export type AnswerRevealResponse = {
 
 export type StartGameRequest = { gameMode?: GameMode }
 export type GameAnswerRequest = { questionId: number; selectedPos: AnswerPos }
+
+/* ---------- 연승 챌린지 (GM_07) ---------- */
+
+/** 연승 챌린지 에러 코드 */
+export type StreakErrorCode =
+  | 'NO_QUESTION_AVAILABLE' // 409 낼 문제가 없음
+  | 'CHALLENGE_NOT_FOUND' // 404 도전이 없거나 내 도전이 아님
+  | 'CHALLENGE_ENDED' // 409 이미 끝난 도전
+  | 'NOT_CURRENT_QUESTION' // 400 지금 풀 문제가 아님
+
+/** WRONG = 틀려서 끝, COMPLETED = 낼 문제를 다 맞혀서 완주 */
+export type StreakEndReason = 'WRONG' | 'COMPLETED'
+
+export type StreakStartResponse = {
+  challengeId: number
+  bestWinStreak: number
+  /** 첫 문제 (판 문제와 같은 형식) */
+  question: GameQuestionItem
+}
+
+export type StreakAnswerResponse = {
+  reveal: AnswerRevealResponse
+  currentWinStreak: number
+  bestWinStreak: number
+  /** 이번 답으로 최고 연승을 새로 썼는지 */
+  newRecord: boolean
+  ended: boolean
+  endReason: StreakEndReason | null
+  /** ended가 true면 null */
+  nextQuestion: GameQuestionItem | null
+}
+
+export type StreakAnswerRequest = { questionId: number; selectedPos: AnswerPos }

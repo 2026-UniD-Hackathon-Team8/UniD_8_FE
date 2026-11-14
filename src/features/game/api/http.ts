@@ -1,6 +1,8 @@
 // 게임 기능 전용 HTTP 헬퍼.
 // 팀 공용 API 클라이언트가 생기면 그쪽으로 옮기고 이 파일은 지운다.
-import type { ApiEnvelope, GameErrorCode } from './types'
+import type { ApiEnvelope, GameErrorCode, StreakErrorCode } from './types'
+
+type ErrorCode = GameErrorCode | StreakErrorCode
 
 /** VITE_API_BASE_URL이 없으면 같은 출처(/api)로 보낸다. 로컬에서는 Vite 프록시를 쓴다(README 참고). */
 const BASE_URL: string = import.meta.env.VITE_API_BASE_URL ?? ''
@@ -23,7 +25,7 @@ export function setDeviceIdProvider(provider: () => string | null): void {
 
 export class ApiError extends Error {
   readonly status: number
-  readonly code: GameErrorCode | string
+  readonly code: ErrorCode | string
   readonly errors: Record<string, string>
 
   constructor(status: number, code: string, message: string, errors: Record<string, string> = {}) {
@@ -35,7 +37,7 @@ export class ApiError extends Error {
   }
 }
 
-export function isApiError(e: unknown, code?: GameErrorCode): e is ApiError {
+export function isApiError(e: unknown, code?: ErrorCode): e is ApiError {
   return e instanceof ApiError && (code === undefined || e.code === code)
 }
 
