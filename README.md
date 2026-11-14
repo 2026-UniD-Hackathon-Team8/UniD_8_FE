@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+> 협업 규칙(브랜치, 커밋, 이슈, PR)은 [CONTRIBUTING.md](CONTRIBUTING.md)를 참고해주세요.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
