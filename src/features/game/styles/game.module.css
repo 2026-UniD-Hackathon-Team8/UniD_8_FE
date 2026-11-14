@@ -435,3 +435,36 @@
   font-family: var(--font-type, 'Courier Prime', monospace);
   word-spacing: -0.3em;
 }
+
+/* ---------- 정답 공개 캐릭터 (맞히면 탐정형, 틀리면 계열 유형) ---------- */
+/* 캐릭터는 시트 오른쪽 위. 글자가 겹치지 않게 오른쪽 여백을 둔다 */
+.verdictRow {
+  position: relative;
+  min-height: 56px;
+  padding-right: 76px;
+}
+.character {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--gm-bg);
+  animation: charPop 0.45s cubic-bezier(0.2, 1.6, 0.5, 1) 0.1s both;
+}
+@keyframes charPop {
+  from {
+    transform: scale(0.4) rotate(-12deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .character {
+    animation: none;
+  }
+}
