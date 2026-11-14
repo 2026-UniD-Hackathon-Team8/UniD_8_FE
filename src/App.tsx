@@ -4,6 +4,7 @@
 //   FE B: /games/:gameSessionId/result, /notes, /profile
 //   FE C: /start, /, /daily, /rankings
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import DailyPlayPage from './features/daily/DailyPlayPage'
 import HomePage from './features/home/HomePage'
 import NotesPage from './features/notes/NotesPage'
 import RankingPage from './features/ranking/RankingPage'
@@ -33,7 +34,7 @@ export default function App() {
           <Route path="/profile" element={<Placeholder name="마이페이지" />} />
         </Route>
         {/* 문제 풀이·결과 화면 (하단 탭 없음) */}
-        <Route path="/daily" element={<Placeholder name="오늘의 5문제" />} />
+        <Route path="/daily" element={<DailyPlayPage />} />
         <Route path="/play" element={<PlayPage />} />
         <Route path="/play/weak" element={<WeakPlayPage />} />
         <Route path="/streak" element={<StreakPage />} />
