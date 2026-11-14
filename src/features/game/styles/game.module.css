@@ -3,22 +3,25 @@
    FE C의 기본 컴포넌트가 나오면 버튼 등은 그걸로 바꾼다. */
 
 .root {
-  --gm-bg: var(--g0, #051f20);
-  --gm-surface: var(--g1, #0b2b26);
-  --gm-surface2: var(--g2, #163832);
-  --gm-line: var(--g3, #235347);
-  --gm-paper: var(--white, #f3f1ea);
+  /* 밝은 테마(아이보리·민트): 문제 화면은 민트 체크 바탕 위 종이 카드 */
+  --gm-bg: var(--mint, #daf1de);
+  --gm-surface: var(--paper, #fffdf7);
+  --gm-surface2: var(--mint, #daf1de);
+  --gm-line: var(--sage, #8eb69b);
+  --gm-paper: var(--paper, #fffdf7);
   --gm-ink: var(--ink, #10201c);
-  --gm-tx: var(--tx, #f3f1ea);
-  --gm-tx2: var(--tx2, #b7c7bf);
-  --gm-tx3: var(--tx3, #7d978c);
-  --gm-y: var(--y, #ffc83d);
+  --gm-tx: var(--ink, #10201c);
+  --gm-tx2: var(--ink2, #46514c);
+  --gm-tx3: var(--ink3, #848b86);
+  --gm-y: var(--d2, #163832);
   --gm-red: var(--red, #e5484d);
+  --gm-edge: var(--edge, #051f20);
+  --gm-ivory: var(--ivory, #faf6ec);
 
   min-height: 100vh;
   max-width: 460px;
   margin: 0 auto;
-  background: var(--gm-bg);
+  background: var(--pat-gingham-soft, var(--gm-bg));
   color: var(--gm-tx);
   font-size: 15px;
   line-height: 1.55;
@@ -493,3 +496,58 @@
     animation: none;
   }
 }
+
+/* ---------- 밝은 테마: 테두리·밀린 그림자 (오려 붙인 종이 느낌) ---------- */
+.top { border-bottom: 1.5px solid var(--gm-line); }
+.back {
+  padding: 6px 11px;
+  border-radius: 99px;
+  border: 1.5px solid var(--gm-edge);
+  background: var(--gm-paper);
+  color: var(--gm-ink);
+  font-weight: 800;
+}
+.seg { height: 8px; border-radius: 4px; border: 1.5px solid var(--gm-edge); background: var(--gm-paper); }
+.segAnswered { background: var(--gm-line); }
+.segCurrent { background: var(--gm-surface2); box-shadow: inset 0 0 0 2px var(--gm-line); }
+
+/* 말풍선: 꼬리 대신 테두리 + 그림자 */
+.bubble { border: 2px solid var(--gm-edge); box-shadow: 3px 3px 0 var(--gm-edge); }
+.bubble::after { display: none; }
+
+/* 선택지 카드 */
+.choice { border: 2px solid var(--gm-edge); box-shadow: 4px 4px 0 var(--gm-edge); }
+.choiceHead {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--gm-y);
+  color: var(--gm-ivory);
+  margin-bottom: 8px;
+}
+.choice:nth-child(2) .choiceHead { background: var(--gm-line); color: var(--gm-ink); }
+.holding { transform: rotate(-1deg); box-shadow: 0 0 0 3px var(--gm-red), 4px 4px 0 var(--gm-edge); }
+.isTarget { box-shadow: 0 0 0 3px var(--gm-red), 4px 4px 0 var(--gm-edge); }
+.isCredible { box-shadow: 0 0 0 3px var(--gm-y), 4px 4px 0 var(--gm-edge); }
+.stampCredible { background: var(--gm-y); color: var(--gm-ivory); }
+.mine { color: var(--gm-ivory); }
+.compareItem { border: 2px solid var(--gm-edge); }
+
+/* 정답 공개 시트 */
+.sheet {
+  border: 2px solid var(--gm-edge);
+  border-bottom: 0;
+  box-shadow: 0 -8px 24px rgba(5, 31, 32, 0.22);
+}
+.sheetWrong .verdict { color: var(--gm-red); }
+.checkBox { background: var(--gm-surface2); border: 2px solid var(--gm-edge); }
+.checkLabel { color: var(--gm-tx2); }
+
+/* 버튼·안내 카드 */
+.btn { color: var(--gm-ivory); border: 2px solid var(--gm-edge); box-shadow: 3px 3px 0 var(--gm-edge); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--gm-edge); }
+.btnDark { background: var(--gm-surface2); color: var(--gm-ink); }
+.card,
+.scoreBox { border: 2px solid var(--gm-edge); box-shadow: 4px 4px 0 var(--gm-edge); }
