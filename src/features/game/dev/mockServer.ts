@@ -102,7 +102,7 @@ const TYPE_NAME: Record<QuestionType, string> = {
 type Placed = { q: MockQ; seq: number; answerPos: AnswerPos; selected: AnswerPos | null }
 
 let gameId = 100
-let game: { id: number; status: GameSessionResponse['status']; placed: Placed[] } | null = null
+let game: { id: number; mode: GameSessionResponse['gameMode']; status: GameSessionResponse['status']; placed: Placed[] } | null = null
 let streak: { id: number; wins: number; placed: Placed; used: Set<number> } | null = null
 let best = 0
 
@@ -125,7 +125,7 @@ const sessionRes = (): GameSessionResponse => {
   const solved = placed.filter((p) => p.selected).length
   return {
     gameSessionId: game!.id,
-    gameMode: 'NORMAL',
+    gameMode: game!.mode,
     status: game!.status,
     solvedCount: solved,
     totalCount: placed.length,
@@ -161,7 +161,8 @@ async function handle(method: string, path: string, body: Record<string, unknown
 
   if (method === 'POST' && path === '/api/games') {
     if (game?.status === 'IN_PROGRESS') game.status = 'ABANDONED'
-    game = { id: ++gameId, status: 'IN_PROGRESS', placed: BANK.map((q, i) => place(q, i + 1)) }
+    const mode = body?.gameMode === 'WEAKNESS_RETRY' ? 'WEAKNESS_RETRY' : 'NORMAL'
+    game = { id: ++gameId, mode, status: 'IN_PROGRESS', placed: BANK.map((q, i) => place(q, i + 1)) }
     return ok('GAME_STARTED', sessionRes())
   }
   if (method === 'GET' && path === '/api/games/current') {
