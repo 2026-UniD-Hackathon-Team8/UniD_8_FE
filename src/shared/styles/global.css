@@ -1,0 +1,53 @@
+/* 공통 스타일 — 여러 화면에서 같이 쓰는 클래스만 둡니다. 화면 전용 스타일은 각 화면 폴더의 .css에 작성하세요. */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { min-height: 100%; }
+body {
+  font-family: var(--font);
+  background: #020f10;
+  color: var(--tx);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+#root { max-width: var(--app-w); min-height: 100vh; margin: 0 auto; background: var(--g0); position: relative; overflow-x: hidden; }
+button, input { font: inherit; color: inherit; border: 0; background: none; text-align: inherit; }
+button { cursor: pointer; }
+a { color: var(--y); }
+
+/* 레이아웃 */
+.page { padding: 8px 18px calc(var(--nav-h) + 56px); }
+.row { display: flex; align-items: center; gap: 10px; }
+.spacer { flex: 1; }
+.minirow { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+.mt4 { margin-top: 4px; } .mt8 { margin-top: 8px; } .mt12 { margin-top: 12px; } .mt16 { margin-top: 16px; } .mt24 { margin-top: 24px; }
+
+/* 글자 위계 */
+.t-h1 { font-size: var(--fs-h1); font-weight: 800; letter-spacing: -0.035em; line-height: 1.3; }
+.t-h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -0.03em; line-height: 1.35; }
+.t-cap { font-size: var(--fs-cap); color: var(--tx3); line-height: 1.5; }
+.t-lbl { font-size: var(--fs-lbl); font-weight: 700; letter-spacing: 0.01em; color: var(--tx3); }
+.num { font-weight: 700; letter-spacing: -0.04em; }
+
+/* 버튼 */
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; border-radius: var(--radius-md);
+  font-weight: 700; font-size: 16px; background: var(--y); color: var(--ink); transition: transform 0.08s; text-decoration: none; }
+.btn:active { transform: scale(0.985); }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn.dark { background: var(--g2); color: var(--tx); box-shadow: inset 0 0 0 1px var(--g3); }
+.btn.red { background: var(--red); color: #fff; }
+.link { font-size: 14px; font-weight: 700; color: var(--y); display: inline-flex; gap: 4px; align-items: center; text-decoration: none; }
+
+/* 카드 */
+.card { border-radius: var(--radius-lg); background: var(--g1); border: 1px solid var(--g2); padding: 16px; }
+
+/* 탭 */
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: var(--radius-md); background: var(--g1); border: 1px solid var(--g2); }
+.tabs button { padding: 10px; border-radius: 9px; font-weight: 700; font-size: 14px; color: var(--tx3); text-align: center; }
+.tabs button.on { background: var(--g2); color: var(--tx); }
+
+/* 입력 */
+.inp { width: 100%; padding: 13px; border-radius: var(--radius-md); border: 1px solid var(--g3); background: var(--g0); color: var(--tx); font-size: 16px; }
+.inp:focus { outline: 2px solid var(--y); outline-offset: 1px; }
+
+.foot-note { text-align: center; font-size: 12px; color: var(--tx3); margin-top: 12px; }
