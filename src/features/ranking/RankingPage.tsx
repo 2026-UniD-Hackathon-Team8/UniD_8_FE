@@ -1,7 +1,6 @@
 // RK_01 랭킹 — 연승 랭킹(연승 챌린지 최고 기록) / 데일리 랭킹(오늘의 5문제 연속 학습 일수)
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { isApiError } from '../../shared/api/http'
 import { useAsync } from '../../shared/hooks/useAsync'
 import { useLayout } from '../../shared/layouts/useLayout'
 import { fetchRanking } from './api'
@@ -32,7 +31,7 @@ function Row({ r, kind, me }: { r: RankRow; kind: RankingKind; me: boolean }) {
 
 export default function RankingPage() {
   const [kind, setKind] = useState<RankingKind>('streak')
-  const { data, loading, error, reload } = useAsync(fetchRanking, kind)
+  const { data, loading, error, reload } = useAsync(fetchRanking, 'streak')
   const { summary } = useLayout()
   const nav = useNavigate()
   const m = META[kind]
@@ -56,27 +55,20 @@ export default function RankingPage() {
       </div>
       <p className="t-cap mt12">{m.desc}</p>
 
-      {loading && <p className="t-cap mt12">불러오는 중…</p>}
+      {kind === 'streak' && loading && <p className="t-cap mt12">불러오는 중…</p>}
 
-      {!loading && error && (
+      {kind === 'daily' && <div className="card mt12">
+        <p className="t-h2">데일리 랭킹은 준비 중이에요</p>
+        <p className="t-cap mt4">현재 백엔드는 연승 랭킹만 제공하고 있어요.</p>
+      </div>}
+      {kind === 'streak' && !loading && error && (
         <div className="card mt12">
-          {kind === 'daily' && isApiError(error, 'NOT_FOUND') ? (
-            <>
-              <p className="t-h2">데일리 랭킹은 준비 중이에요</p>
-              <p className="t-cap mt4">연속 학습 일수 랭킹 API가 열리면 바로 보여요.</p>
-            </>
-          ) : (
-            <>
-              <p className="t-h2">순위를 불러오지 못했어요</p>
-              <button className="link mt8" onClick={reload}>
-                다시 시도 →
-              </button>
-            </>
-          )}
+          <p className="t-h2">순위를 불러오지 못했어요</p>
+          <button className="link mt8" onClick={reload}>다시 시도 →</button>
         </div>
       )}
 
-      {!loading && data && (
+      {kind === 'streak' && !loading && data && (
         <>
           <ol className="list mt12">
             {data.top.map((r) => (
