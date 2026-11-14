@@ -10,6 +10,7 @@
 | `api/types.ts` | 백엔드 실제 코드(UniD_8_BE `dev`) 기준 요청·응답 타입 |
 | `api/http.ts` | fetch 래퍼. `X-Device-Id` 헤더, 공통 응답 풀기, `ApiError` |
 | `api/gameApi.ts` | `startGame`, `getCurrentGame`(없으면 `null`), `submitGameAnswer` |
+| `api/streakApi.ts` | `startStreakChallenge`, `submitStreakAnswer` (연승 챌린지) |
 | `constants.ts` | 길게 누르기 시간, 유형별 지시문·도장 문구, 계열별 확인 질문·색·캐릭터 |
 | `lib/reveal.ts` | 정답 공개용 함수: AI 답 A/B 매핑, 도장 문구, 결과 문구 |
 | `lib/progress.ts` | 다음 문제, 이어 하기 문구, 진행 바 칸 상태, 답 제출 후 상태 갱신 |
@@ -46,4 +47,4 @@ if (reveal.completed) { /* 결과 화면(FE B)으로 gameSessionId 넘기기 */ 
 - 대화 고르기: 앞선 대화(사용자 질문 → AI 첫 답 → 사용자 반박)가 `prompt` 문자열 하나에 들어 있다. 나누는 형식 필요.
 - 출처: `source` 문자열 하나. 여러 개·링크 이름 표시 형식 필요.
 - '가짜 같은 진짜' 표시 값이 없다.
-- 연승 챌린지 API 미구현 → 나오면 `api/streakApi.ts` 추가.
+- 연승 챌린지: 진행 중인 도전 조회 API가 없어서 새로고침하면 이어 할 수 없다(새로 시작하면 이전 도전은 그때까지 연승으로 끝남).

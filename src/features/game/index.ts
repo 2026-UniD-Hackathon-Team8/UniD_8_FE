@@ -2,6 +2,7 @@
 export * from './api/types'
 export { ApiError, isApiError, setDeviceIdProvider } from './api/http'
 export { getCurrentGame, startGame, submitGameAnswer } from './api/gameApi'
+export { startStreakChallenge, submitStreakAnswer } from './api/streakApi'
 export * from './constants'
 export * from './lib/reveal'
 export * from './lib/progress'
