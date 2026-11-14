@@ -59,6 +59,9 @@ export async function request<T>(method: Method, path: string, opts: Options = {
     throw new ApiError(0, 'NETWORK_ERROR', '네트워크 연결을 확인해주세요.')
   }
 
+  // 204 No Content: 본문이 없는 정상 응답 → undefined (JSON 파싱 실패를 서버 오류로 보지 않는다)
+  if (res.status === 204) return undefined as T
+
   let json: Envelope<T> | null = null
   try {
     json = (await res.json()) as Envelope<T>

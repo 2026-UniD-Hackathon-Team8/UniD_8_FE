@@ -16,11 +16,13 @@ export function startGame(gameMode: GameMode = 'NORMAL', signal?: AbortSignal) {
   return request<GameSessionResponse>('POST', '/api/games', body, signal)
 }
 
-/** 진행 중인 판. 없으면 null (서버 404 GAME_SESSION_NOT_FOUND). */
+/** 진행 중인 판. 없으면 null (서버 204 No Content). */
 export async function getCurrentGame(signal?: AbortSignal): Promise<GameSessionResponse | null> {
   try {
-    return await request<GameSessionResponse>('GET', '/api/games/current', undefined, signal)
+    const data = await request<GameSessionResponse | undefined>('GET', '/api/games/current', undefined, signal)
+    return data ?? null
   } catch (e) {
+    // 과도기 호환: 예전 서버는 진행 중인 판이 없으면 404 GAME_SESSION_NOT_FOUND를 줬다
     if (isApiError(e, 'GAME_SESSION_NOT_FOUND')) return null
     throw e
   }
