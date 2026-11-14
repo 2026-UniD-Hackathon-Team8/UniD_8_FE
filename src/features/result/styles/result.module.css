@@ -3,7 +3,7 @@
 
 .root {
   min-height: 100vh;
-  background: var(--g0);
+  background: var(--g1);
   color: var(--tx);
 }
 
@@ -16,7 +16,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: color-mix(in srgb, var(--g0) 94%, transparent);
+  background: color-mix(in srgb, var(--g1) 94%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--g2);
 }
@@ -49,11 +49,21 @@
 .hero {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--g1);
-  border: 1px solid var(--g2);
+  border-radius: 18px;
+  background: var(--paper);
+  border: 2px solid var(--edge);
+  box-shadow: var(--shadow-hard);
   padding: 24px 18px 22px;
   text-align: center;
+  /* 밝은 면: 안쪽 글자·면 색 변수를 밝은 바탕용으로 (shared/styles/global.css의 .card와 같은 규칙) */
+  --tx: var(--ink);
+  --tx2: var(--ink2);
+  --tx3: var(--ink3);
+  --g0: var(--ivory2);
+  --g1: var(--paper);
+  --g2: var(--mint);
+  --y: var(--d2);
+  color: var(--ink);
 }
 .hero::before {
   content: '';
@@ -69,7 +79,8 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: var(--g0);
+  background: var(--pat-gingham);
+  border: 2px solid var(--edge);
   box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 .label {
@@ -107,10 +118,21 @@
 
 /* ---------- 점수 · 약점 · 강점 ---------- */
 .summary {
-  border-radius: var(--radius-lg);
-  background: var(--g1);
-  border: 1px solid var(--g2);
+  border-radius: 18px;
+  background: var(--paper);
+  border: 2px solid var(--edge);
+  box-shadow: var(--shadow-hard);
   padding: 16px;
+  /* 밝은 면: 안쪽 글자·면 색 변수를 밝은 바탕용으로 (shared/styles/global.css의 .card와 같은 규칙) */
+  --tx: var(--ink);
+  --tx2: var(--ink2);
+  --tx3: var(--ink3);
+  --g0: var(--ivory2);
+  --g1: var(--paper);
+  --g2: var(--mint);
+  --y: var(--d2);
+  color: var(--ink);
+
   display: grid;
   gap: 8px;
 }
@@ -134,10 +156,21 @@
 
 /* ---------- 확인 질문 ---------- */
 .check {
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--accent) 12%, var(--g1));
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--g2));
+  border-radius: 18px;
+  background: var(--mint);
+  border: 2px solid var(--edge);
+  box-shadow: var(--shadow-hard);
   padding: 20px 18px;
+  /* 밝은 면: 안쪽 글자·면 색 변수를 밝은 바탕용으로 (shared/styles/global.css의 .card와 같은 규칙) */
+  --tx: var(--ink);
+  --tx2: var(--ink2);
+  --tx3: var(--ink3);
+  --g0: var(--ivory2);
+  --g1: var(--paper);
+  --g2: var(--mint);
+  --y: var(--d2);
+  color: var(--ink);
+
 }
 .checkLead {
   font-size: var(--fs-cap);

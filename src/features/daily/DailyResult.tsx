@@ -58,7 +58,7 @@ export default function DailyResult({ onHome }: { onHome: () => void }) {
       </section>
 
       <h2 className="t-h2 mt24">오늘 푼 문제</h2>
-      <ul className="dr-list mt8">
+      <ul className="card dr-list mt8">
         {items.map((q) => {
           const cat = CAT_FROM_API[q.category]
           return (
