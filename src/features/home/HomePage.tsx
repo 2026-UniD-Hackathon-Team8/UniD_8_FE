@@ -19,8 +19,10 @@ export default function HomePage() {
     <main className="page">
       <HeroCard inProgress={home.inProgressGameId !== null} />
       <DailyCard daily={home.daily} streak={home.streak} />
-      <RunCard best={home.bestWinStreak} />
-      <WeakCard />
+      <div className="duo">
+        <RunCard best={home.bestWinStreak} />
+        <WeakCard type={summary.type} />
+      </div>
     </main>
   )
 }
