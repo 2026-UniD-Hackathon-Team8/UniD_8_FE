@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { isApiError } from '../../shared/api/http'
 import { ensureDeviceId, hasGuest, saveNickname, validNickname } from '../../shared/store/guest'
 import { createGuest } from './api'
+import logo from '../../assets/logo/damideo-logo.png'
 import './StartPage.css'
 
 export default function StartPage() {
@@ -34,33 +35,12 @@ export default function StartPage() {
 
   return (
     <div className="gate">
-      <svg className="gate-art" viewBox="0 0 340 250" aria-hidden="true">
-        <rect width="340" height="250" rx="16" fill="#0B2B26" />
-        <polygon points="90,226 250,226 330,250 10,250" fill="#FFF7E6" opacity=".08" />
-        <rect x="96" y="22" width="148" height="204" fill="#051F20" />
-        <rect x="104" y="30" width="132" height="196" fill="#163832" />
-        <rect x="170" y="30" width="66" height="196" fill="#123029" />
-        <rect x="118" y="46" width="104" height="84" fill="#FFF7E6" />
-        <rect x="170" y="46" width="52" height="84" fill="#E8DCC4" />
-        <text
-          x="170"
-          y="96"
-          textAnchor="middle"
-          fontFamily="Pretendard,sans-serif"
-          fontWeight="800"
-          fontSize="24"
-          fill="#10201c"
-        >
-          다믿어<tspan fontFamily="Courier Prime,monospace">?</tspan>
-        </text>
-        <circle cx="222" cy="152" r="6" fill="#FFF7E6" />
-      </svg>
-      <h1 className="t-h1 mt24 center">
-        AI가 지어낸 답,
-        <br />
-        골라낼 수 있나요?
-      </h1>
-      <p className="t-cap mt8 center">두 답 중 잘못된 쪽을 고르며 AI 답변을 검증하는 습관을 길러요.</p>
+      <div className="gate-brand">
+        <img className="gate-logo" src={logo} alt="다믿어?" draggable={false} />
+        <p className="gate-tag">
+          고르면서 배우는 <b>AI 의심법</b>
+        </p>
+      </div>
       <div className="spacer" />
       <label className="t-lbl mt24" htmlFor="nick">
         닉네임
