@@ -1,6 +1,8 @@
 // 게임 기능 전용 HTTP 헬퍼.
 // 팀 공용 API 클라이언트가 생기면 그쪽으로 옮기고 이 파일은 지운다.
-import type { ApiEnvelope, GameErrorCode } from './types'
+import type { ApiEnvelope, GameErrorCode, StreakErrorCode } from './types'
+
+type ErrorCode = GameErrorCode | StreakErrorCode
 
 /** VITE_API_BASE_URL이 없으면 같은 출처(/api)로 보낸다. 로컬에서는 Vite 프록시를 쓴다(README 참고). */
 const BASE_URL: string = import.meta.env.VITE_API_BASE_URL ?? ''
@@ -23,7 +25,7 @@ export function setDeviceIdProvider(provider: () => string | null): void {
 
 export class ApiError extends Error {
   readonly status: number
-  readonly code: GameErrorCode | string
+  readonly code: ErrorCode | string
   readonly errors: Record<string, string>
 
   constructor(status: number, code: string, message: string, errors: Record<string, string> = {}) {
@@ -35,7 +37,7 @@ export class ApiError extends Error {
   }
 }
 
-export function isApiError(e: unknown, code?: GameErrorCode): e is ApiError {
+export function isApiError(e: unknown, code?: ErrorCode): e is ApiError {
   return e instanceof ApiError && (code === undefined || e.code === code)
 }
 
@@ -75,6 +77,10 @@ export async function request<T>(
   if (json && json.success && res.ok) return json.data
   if (json && !json.success) {
     throw new ApiError(res.status, json.code, json.message, json.errors ?? {})
+  }
+  // 502·503·504에 JSON 본문이 없으면 백엔드까지 못 간 것 (로컬 백엔드가 꺼져 있어 Vite 프록시가 502를 주는 경우 등)
+  if ([502, 503, 504].includes(res.status)) {
+    throw new ApiError(res.status, 'NETWORK_ERROR', '서버에 연결할 수 없어요. 잠시 후 다시 시도해주세요.')
   }
   throw new ApiError(res.status, 'INTERNAL_ERROR', '서버에서 문제가 발생했습니다.')
 }

@@ -10,14 +10,42 @@
 | `api/types.ts` | 백엔드 실제 코드(UniD_8_BE `dev`) 기준 요청·응답 타입 |
 | `api/http.ts` | fetch 래퍼. `X-Device-Id` 헤더, 공통 응답 풀기, `ApiError` |
 | `api/gameApi.ts` | `startGame`, `getCurrentGame`(없으면 `null`), `submitGameAnswer` |
+| `api/streakApi.ts` | `startStreakChallenge`, `submitStreakAnswer` (연승 챌린지) |
 | `constants.ts` | 길게 누르기 시간, 유형별 지시문·도장 문구, 계열별 확인 질문·색·캐릭터 |
 | `lib/reveal.ts` | 정답 공개용 함수: AI 답 A/B 매핑, 도장 문구, 결과 문구 |
 | `lib/progress.ts` | 다음 문제, 이어 하기 문구, 진행 바 칸 상태, 답 제출 후 상태 갱신 |
 | `hooks/useHoldToSelect.ts` | 길게 눌러 고르기 훅 (스타일 없음) |
+| `hooks/useGamePlay.ts` | 실전 판 흐름: 이어 하기 확인 → 풀기 → 정답 공개 → 다음/완료 |
+| `hooks/useStreakPlay.ts` | 연승 챌린지 흐름: 시작 → 풀기 → 정답 공개 → 다음/종료 |
+| `lib/dialogue.ts` | 대화 고르기 앞선 대화를 말풍선으로 나누기 (임시 규칙) |
+| `components/` | 선택지 카드, 문제 본문, 정답 공개 시트, 상단 바 |
+| `screens/GamePlayScreen.tsx` | 실전 판 화면 (일반 / 약점 재도전) |
+| `screens/StreakPlayScreen.tsx` | 연승 챌린지 화면 (종료 화면 포함) |
+| `styles/game.module.css` | 화면 스타일. 전역 토큰(`--y`, `--g0` 등)이 있으면 그 값을 쓴다 |
+| `dev/` | 개발용 미리보기와 가짜 서버 (실제 앱에서는 안 씀) |
 
-화면 컴포넌트는 C의 디자인 토큰·기본 컴포넌트가 나온 뒤 `components/`에 만든다.
+## 라우터에 붙이기 (홈·라우터 담당과 합칠 때)
 
-## 흐름
+```tsx
+<GamePlayScreen
+  mode="NORMAL"                // 약점 재도전은 "WEAKNESS_RETRY"
+  onExit={() => navigate('/')}
+  onFinished={(id) => navigate(`/games/${id}/result`)}   // 판 결과 화면(FE B)
+  onUnauthorized={() => navigate('/start')}               // 게스트 시작
+/>
+<StreakPlayScreen onExit={() => navigate('/')} onRanking={() => navigate('/rankings')} />
+```
+
+버튼은 지금 임시 스타일이다. FE C의 Button 등이 나오면 `components/`와 `screens/`에서 바꿔 끼운다.
+
+## 혼자 확인하기 (미리보기)
+
+`npm run dev` 후 아래 주소를 연다. `game-dev.html`은 개발 서버 전용이고 빌드에는 안 들어간다.
+
+- `http://localhost:5173/game-dev.html?mock` — 가짜 서버 (기획안·질문 계열 예시 4문제)
+- `http://localhost:5173/game-dev.html` — 실제 서버. 게스트 계정을 만들어 기기 ID를 저장한다. `.env.local`에 `VITE_API_BASE_URL=http://localhost:8080`
+
+## 흐름 (화면 없이 함수만 쓸 때)
 
 ```ts
 // 실전 시작 버튼
@@ -46,4 +74,4 @@ if (reveal.completed) { /* 결과 화면(FE B)으로 gameSessionId 넘기기 */ 
 - 대화 고르기: 앞선 대화(사용자 질문 → AI 첫 답 → 사용자 반박)가 `prompt` 문자열 하나에 들어 있다. 나누는 형식 필요.
 - 출처: `source` 문자열 하나. 여러 개·링크 이름 표시 형식 필요.
 - '가짜 같은 진짜' 표시 값이 없다.
-- 연승 챌린지 API 미구현 → 나오면 `api/streakApi.ts` 추가.
+- 연승 챌린지: 진행 중인 도전 조회 API가 없어서 새로고침하면 이어 할 수 없다(새로 시작하면 이전 도전은 그때까지 연승으로 끝남).

@@ -45,16 +45,18 @@ type CategoryUi = {
   checkQuestion: string
   /** 사이트 CSS 변수 이름 (디자인 토큰이 정해지면 맞춘다) */
   colorVar: string
+  /** 토큰이 없을 때 쓰는 기본 색 */
+  color: string
   /** 이 계열을 가장 많이 틀렸을 때의 유형 캐릭터 */
   character: CharacterKey
 }
 
 export const CATEGORY_UI: Record<QuestionCategory, CategoryUi> = {
-  EVIDENCE: { name: '근거', checkQuestion: '근거가 실제로 있나?', colorVar: '--c-evidence', character: 'evidence' },
-  CONTEXT: { name: '맥락', checkQuestion: '빠진 조건·예외는 없나?', colorVar: '--c-context', character: 'context' },
-  LOGIC: { name: '논리', checkQuestion: '따져 보면 말이 되나?', colorVar: '--c-logic', character: 'logic' },
-  TIMELINE: { name: '시점', checkQuestion: '언제 기준인가?', colorVar: '--c-time', character: 'time' },
-  QUESTION: { name: '질문', checkQuestion: '내 질문이 답을 끌고 가지 않았나?', colorVar: '--c-question', character: 'question' },
+  EVIDENCE: { name: '근거', checkQuestion: '근거가 실제로 있나?', colorVar: '--c-evidence', color: '#3B82F6', character: 'evidence' },
+  CONTEXT: { name: '맥락', checkQuestion: '빠진 조건·예외는 없나?', colorVar: '--c-context', color: '#8B5CF6', character: 'context' },
+  LOGIC: { name: '논리', checkQuestion: '따져 보면 말이 되나?', colorVar: '--c-logic', color: '#EC4899', character: 'logic' },
+  TIMELINE: { name: '시점', checkQuestion: '언제 기준인가?', colorVar: '--c-time', color: '#14B8A6', character: 'time' },
+  QUESTION: { name: '질문', checkQuestion: '내 질문이 답을 끌고 가지 않았나?', colorVar: '--c-question', color: '#F97316', character: 'question' },
 }
 
 export const GAME_MODE_NAME = {
