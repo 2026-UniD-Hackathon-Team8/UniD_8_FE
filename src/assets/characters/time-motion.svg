@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200" aria-label="시점 착각형">
+<!-- 시점 착각형 · 다믿어? 수사 일지 캐릭터 모션 -->
+<style>.tim-bl{animation:tim-bl 3.6s ease-in-out infinite}
+@keyframes tim-bl{0%,55%{transform:scaleY(1)}65%,80%{transform:scaleY(.45)}88%,100%{transform:scaleY(1)}}
+.tim-bd{animation:tim-bd 3.6s ease-in-out infinite;transform-origin:50px 90px}
+@keyframes tim-bd{0%,55%{transform:rotate(0)}70%,82%{transform:rotate(-4deg) translateY(1px)}95%,100%{transform:rotate(0)}}
+.tim-mh{animation:tim-mh 1.2s steps(1) infinite;transform-origin:21px 65px}
+@keyframes tim-mh{0%{transform:rotate(0)}50%{transform:rotate(8deg)}}
+.tim-ck{animation:tim-ck 1.2s ease-in-out infinite;transform-origin:22px 66px}
+@keyframes tim-ck{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.tim-ds{animation:tim-ds 3s ease-in-out infinite}
+.tim-ds.tim-b{animation-delay:-1s}.tim-ds.tim-c{animation-delay:-2s}
+@keyframes tim-ds{0%{transform:translate(0,0);opacity:0}25%{opacity:1}100%{transform:translate(-3px,-9px);opacity:0}}
+.tim-np{animation:tim-np 3.6s ease-in-out infinite;transform-origin:78px 82px}
+@keyframes tim-np{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}</style>
+<g class="tim-bd"><path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#0E8F81" stroke-width="17" fill="none" stroke-linecap="round" transform="translate(2.5 2.5)"/>
+    <path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#14B8A6" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="52.5" cy="85.5" r="8.5" fill="#0E8F81"/><circle cx="50" cy="83" r="8.5" fill="#14B8A6"/><g class="tim-bl" style="transform-origin:42px 24px"><circle cx="42" cy="24" r="4.2" fill="#fff"/><g class="tim-pu"><circle cx="42.8" cy="24.6" r="2.016" fill="#141414"/></g></g><g class="tim-bl" style="transform-origin:58px 24px"><circle cx="58" cy="24" r="4.2" fill="#fff"/><g class="tim-pu"><circle cx="58.8" cy="24.6" r="2.016" fill="#141414"/></g></g></g>
+<g class="tim-ck"><path d="M30 56q8-8 18-4" stroke="#8a8780" stroke-width="1.6" fill="none"/>
+<circle cx="22" cy="66" r="12" fill="#0E8F81"/><circle cx="21" cy="65" r="11" fill="#f3f1ea"/>
+<path d="M21 65h6" stroke="#141414" stroke-width="2" stroke-linecap="round"/>
+<g class="tim-mh"><path d="M21 65V57" stroke="#141414" stroke-width="2" stroke-linecap="round"/></g>
+<rect x="18.5" y="51" width="5" height="4" rx="1" fill="#0E8F81"/></g>
+<g class="tim-np"><g transform="rotate(8 78 70)"><rect x="64" y="60" width="28" height="22" rx="1" fill="#d6cfb8"/><rect x="67" y="63" width="22" height="3.5" fill="#a8a088"/><rect x="67" y="69" width="10" height="9" fill="#bdb59c"/><rect x="79" y="69" width="10" height="2" fill="#a8a088"/><rect x="79" y="73" width="10" height="2" fill="#a8a088"/></g></g>
+<circle class="tim-ds" cx="70" cy="56" r="1" fill="#8a8780"/><circle class="tim-ds tim-b" cx="88" cy="54" r="1.2" fill="#8a8780"/><circle class="tim-ds tim-c" cx="94" cy="62" r=".9" fill="#8a8780"/>
+</svg>

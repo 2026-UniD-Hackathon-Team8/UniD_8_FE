@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200" aria-label="끌려가기형">
+<!-- 끌려가기형 · 다믿어? 수사 일지 캐릭터 모션 -->
+<style>.que-bl{animation:que-bl 2.8s linear infinite}
+@keyframes que-bl{0%,60%{transform:scaleY(1)}62%{transform:scaleY(.12)}64%,100%{transform:scaleY(1)}}
+.que-nd{animation:que-nd .9s ease-in-out infinite;transform-origin:50px 88px}
+@keyframes que-nd{0%,100%{transform:rotate(0)}40%{transform:rotate(7deg) translateY(1.5px)}}
+.que-pn{animation:que-pn .45s ease-in-out infinite}
+@keyframes que-pn{0%,100%{transform:translate(0,0)}25%{transform:translate(-3px,-1px)}50%{transform:translate(-6px,0)}75%{transform:translate(-3px,1px)}}
+.que-mv{animation:que-mv .9s ease-in-out infinite}
+@keyframes que-mv{0%,100%{opacity:.2;transform:translateX(0)}40%{opacity:1;transform:translateX(-2px)}}
+.que-ln{animation:que-ln 1.8s linear infinite;transform-origin:70px 77px}
+@keyframes que-ln{0%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style>
+<g class="que-mv"><path d="M22 12q-5 7 0 14M16 16q-3 4 0 8" stroke="#8a8780" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+<g class="que-nd"><g transform="rotate(9 50 55)"><path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#D35A0A" stroke-width="17" fill="none" stroke-linecap="round" transform="translate(2.5 2.5)"/>
+    <path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#F97316" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="52.5" cy="85.5" r="8.5" fill="#D35A0A"/><circle cx="50" cy="83" r="8.5" fill="#F97316"/><g class="que-bl" style="transform-origin:42px 24px"><circle cx="42" cy="24" r="4.4" fill="#fff"/><g class="que-pu"><circle cx="42.8" cy="24.6" r="2.112" fill="#141414"/></g></g><g class="que-bl" style="transform-origin:58px 24px"><circle cx="58" cy="24" r="4.4" fill="#fff"/><g class="que-pu"><circle cx="58.8" cy="24.6" r="2.112" fill="#141414"/></g></g><path d="M45 33q5 3 10 0" stroke="#141414" stroke-width="1.8" fill="none" stroke-linecap="round"/></g></g>
+<rect x="66" y="56" width="24" height="30" rx="2" fill="#f3f1ea"/><rect x="66" y="56" width="24" height="5" rx="1.5" fill="#141414"/>
+<rect x="70" y="66" width="16" height="2.2" fill="#cfcabb"/><rect x="70" y="71" width="16" height="2.2" fill="#cfcabb"/><rect class="que-ln" x="70" y="76" width="11" height="2.2" fill="#cfcabb"/>
+<g class="que-pn"><path d="M90 64l-12 16" stroke="#D35A0A" stroke-width="3" stroke-linecap="round"/></g>
+</svg>
