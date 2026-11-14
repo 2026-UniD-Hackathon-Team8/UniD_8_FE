@@ -166,7 +166,8 @@ async function handle(method: string, path: string, body: Record<string, unknown
     return ok('GAME_STARTED', sessionRes())
   }
   if (method === 'GET' && path === '/api/games/current') {
-    if (!game || game.status !== 'IN_PROGRESS') return err(404, 'GAME_SESSION_NOT_FOUND', '진행 중인 판을 찾을 수 없습니다.')
+    // 실제 서버와 같이: 진행 중인 판이 없으면 204 No Content (본문 없음)
+    if (!game || game.status !== 'IN_PROGRESS') return new Response(null, { status: 204 })
     return ok('GAME_FETCHED', sessionRes())
   }
   let m = path.match(/^\/api\/games\/(\d+)\/answers$/)
