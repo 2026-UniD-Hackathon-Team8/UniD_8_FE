@@ -14,3 +14,4 @@ export {
 } from './mock/profileMock'
 export { useProfile } from './hooks/useProfile'
 export { useUpdateNickname } from './hooks/useUpdateNickname'
+export { ProfileScreen } from './screens/ProfileScreen'
