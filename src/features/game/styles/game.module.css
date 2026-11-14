@@ -449,8 +449,6 @@
   right: -4px;
   width: 64px;
   height: 64px;
-  border-radius: 16px;
-  background: var(--gm-bg);
   animation: charPop 0.45s cubic-bezier(0.2, 1.6, 0.5, 1) 0.1s both;
 }
 @keyframes charPop {
