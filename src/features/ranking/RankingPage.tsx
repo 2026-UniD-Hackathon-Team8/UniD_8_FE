@@ -30,6 +30,43 @@ function Row({ r, kind, me }: { r: RankRow; kind: RankingKind; me: boolean }) {
   )
 }
 
+/** 1~3위 시상대: 2위 · 1위 · 3위 순서로 놓고 받침 높이로 순위를 보여 준다 */
+function Podium({
+  rows,
+  kind,
+  meName,
+  meRank,
+}: {
+  rows: RankRow[]
+  kind: RankingKind
+  meName: string
+  meRank: number | null
+}) {
+  const slots = [rows[1], rows[0], rows[2]]
+  const place = ['p2', 'p1', 'p3']
+  return (
+    <div className="podium" aria-label="1~3위">
+      {slots.map((r, i) =>
+        r ? (
+          <div key={place[i]} className={`pd ${place[i]}`}>
+            <span className="medal num">{r.rank}</span>
+            <div className="nm">
+              {r.nickname}
+              {r.nickname === meName && r.rank === meRank ? ' (나)' : ''}
+            </div>
+            <div className="stand">
+              <b className="num">{r.value}</b>
+              <small>{META[kind].unit}</small>
+            </div>
+          </div>
+        ) : (
+          <div key={place[i]} />
+        ),
+      )}
+    </div>
+  )
+}
+
 export default function RankingPage() {
   const [kind, setKind] = useState<RankingKind>('streak')
   const { data, loading, error, reload } = useAsync(fetchRanking, kind)
@@ -78,17 +115,23 @@ export default function RankingPage() {
 
       {!loading && data && (
         <>
-          <ol className="list mt12">
-            {data.top.map((r) => (
-              <Row
-                key={`${r.rank}-${r.nickname}`}
-                r={r}
-                kind={kind}
-                me={r.nickname === data.me.nickname && r.rank === data.me.rank}
-              />
-            ))}
-          </ol>
-          <div className="card mt12 minirow">
+          {data.top.length > 0 && (
+            <Podium rows={data.top.slice(0, 3)} kind={kind} meName={data.me.nickname} meRank={data.me.rank} />
+          )}
+          {data.top.length > 3 && (
+            <ol className="card list mt16">
+              {data.top.slice(3).map((r) => (
+                <Row
+                  key={`${r.rank}-${r.nickname}`}
+                  r={r}
+                  kind={kind}
+                  me={r.nickname === data.me.nickname && r.rank === data.me.rank}
+                />
+              ))}
+            </ol>
+          )}
+          {data.top.length === 0 && <p className="t-cap mt12">아직 기록이 없어요. 첫 기록의 주인공이 되어 보세요.</p>}
+          <div className="card me-card mt12 minirow">
             <div className="t-h2">
               내 순위 ·{' '}
               {data.me.rank === null ? '기록 없음' : `${data.me.rank}위${data.me.rank > 20 ? ' (20위 밖)' : ''}`}

@@ -34,7 +34,7 @@ export default function StartPage() {
   }
 
   return (
-    <div className="gate">
+    <div className="gate light">
       <div className="gate-brand">
         <img className="gate-logo" src={logo} alt="다믿어?" draggable={false} />
         <p className="gate-tag">

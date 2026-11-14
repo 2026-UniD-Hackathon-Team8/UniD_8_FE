@@ -10,7 +10,7 @@ body {
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
 }
-#root { max-width: var(--app-w); min-height: 100vh; margin: 0 auto; background: var(--g0); position: relative; overflow-x: hidden; }
+#root { max-width: var(--app-w); min-height: 100vh; margin: 0 auto; background: var(--g1); position: relative; overflow-x: hidden; }
 button, input { font: inherit; color: inherit; border: 0; background: none; text-align: inherit; }
 button { cursor: pointer; }
 a { color: var(--y); }
@@ -32,24 +32,40 @@ a { color: var(--y); }
 .type { font-family: var(--font-type); word-spacing: -0.3em; }
 
 /* 버튼 */
-.btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; border-radius: var(--radius-md);
-  font-weight: 700; font-size: 16px; background: var(--y); color: var(--ink); transition: transform 0.08s; text-decoration: none; }
-.btn:active { transform: scale(0.985); }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border-radius: 14px;
+  font-weight: 800; font-size: 16px; background: var(--paper); color: var(--d1); border: 2px solid var(--edge); box-shadow: var(--shadow-hard-sm);
+  transition: transform 0.08s; text-decoration: none; }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--edge); }
 .btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.btn.dark { background: var(--g2); color: var(--tx); box-shadow: inset 0 0 0 1px var(--g3); }
+.btn.dark { background: var(--g2); color: var(--tx); }
 .btn.red { background: var(--red); color: #fff; }
+.btn:disabled:active { transform: none; box-shadow: var(--shadow-hard-sm); }
 .link { font-size: 14px; font-weight: 700; color: var(--y); display: inline-flex; gap: 4px; align-items: center; text-decoration: none; }
 
-/* 카드 */
-.card { border-radius: var(--radius-lg); background: var(--g1); border: 1px solid var(--g2); padding: 16px; }
+/* 밝은 면: 이 안에서는 글자·면 색 변수를 밝은 바탕용으로 바꾼다.
+   (--tx·--g* 를 쓰는 컴포넌트가 카드 안에 들어와도 그대로 읽히게) */
+.light, .card {
+  --tx: var(--ink); --tx2: var(--ink2); --tx3: var(--ink3);
+  --g0: var(--ivory2); --g1: var(--paper); --g2: var(--mint); --g3: var(--sage);
+  --y: var(--d2); --y-l: rgba(142, 182, 155, 0.25); --white: var(--paper); --red-tx: var(--red);
+  color: var(--ink);
+}
+.light .btn, .card .btn { background: var(--d2); color: var(--ivory); }
+.light .btn.dark, .card .btn.dark { background: var(--mint); color: var(--ink); }
+.light .btn.red, .card .btn.red { background: var(--red); color: #fff; }
+
+/* 카드: 아이보리 종이 + 짙은 테두리 + 밀린 그림자 */
+.card { border-radius: 18px; background: var(--paper); border: 2px solid var(--edge); box-shadow: var(--shadow-hard); padding: 16px; }
 
 /* 탭 */
-.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: var(--radius-md); background: var(--g1); border: 1px solid var(--g2); }
-.tabs button { padding: 10px; border-radius: 9px; font-weight: 700; font-size: 14px; color: var(--tx3); text-align: center; }
-.tabs button.on { background: var(--g2); color: var(--tx); }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 14px; border: 1.5px solid var(--g3); }
+.tabs button { padding: 10px; border-radius: 10px; font-weight: 800; font-size: 14px; color: var(--sage); text-align: center; }
+.tabs button.on { background: #fff; color: var(--d1); }
 
 /* 입력 */
-.inp { width: 100%; padding: 13px; border-radius: var(--radius-md); border: 1px solid var(--g3); background: var(--g0); color: var(--tx); font-size: 16px; }
+.inp { width: 100%; padding: 13px; border-radius: 14px; border: 1px solid var(--g3); background: var(--g0); color: var(--tx); font-size: 16px; }
 .inp:focus { outline: 2px solid var(--y); outline-offset: 1px; }
+.light .inp { background: var(--paper); border: 2px solid var(--edge); }
+.light .inp::placeholder { color: var(--ink3); }
 
 .foot-note { text-align: center; font-size: 12px; color: var(--tx3); margin-top: 12px; }

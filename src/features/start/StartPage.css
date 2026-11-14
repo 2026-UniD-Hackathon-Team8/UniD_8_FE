@@ -1,7 +1,10 @@
-.gate { min-height: 100vh; display: flex; flex-direction: column; padding: 0 22px 32px; }
-/* 로고 + 한 줄 소개: 위쪽 가운데 */
-.gate-brand { margin-top: 16vh; display: flex; flex-direction: column; align-items: center; }
-.gate-logo { display: block; width: 72%; max-width: 320px; height: auto; }
-.gate-tag { margin-top: 18px; font-size: 18px; font-weight: 800; letter-spacing: -0.03em; color: var(--white); text-align: center; }
-.gate-tag b { color: var(--c-detective); }
-.gate label.t-lbl { font-size: 15px; font-weight: 600; color: var(--tx2); }
+/* 시작 화면: 민트 깅엄 체크 전체 바탕 (밝은 면) */
+.gate { min-height: 100vh; display: flex; flex-direction: column; padding: 0 22px 32px; background: var(--pat-gingham); }
+/* 로고 배너: 짙은 초록 종이 + 아이보리 로고 */
+.gate-brand { margin: 14vh auto 0; width: min(100%, 320px); padding: 30px 20px 22px; display: flex; flex-direction: column; align-items: center;
+  background: var(--d2); border: 2px solid var(--edge); border-radius: 18px; box-shadow: 5px 5px 0 var(--edge); transform: rotate(-2deg); }
+.gate-logo { display: block; width: 82%; max-width: 240px; height: auto; }
+.gate-tag { margin-top: 14px; font-size: 16px; font-weight: 800; letter-spacing: -0.03em; color: var(--ivory); text-align: center; }
+.gate-tag b { color: var(--yellow); }
+.gate label.t-lbl { font-size: 15px; font-weight: 800; color: var(--ink); }
+.gate .t-cap, .gate .foot-note { color: var(--ink2); font-weight: 600; }

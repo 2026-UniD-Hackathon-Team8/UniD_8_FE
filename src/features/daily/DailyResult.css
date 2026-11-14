@@ -1,25 +1,26 @@
-/* 데일리 결과 화면 전용 */
+/* 데일리 결과 화면 전용 — 짙은 초록 바탕 위 종이 카드 */
 .daily-result { padding-bottom: 48px; }
-.daily-result .score { margin-top: 16px; border-radius: var(--radius-lg); background: var(--white); color: var(--ink); padding: 18px;
+.daily-result .score { margin-top: 16px; border-radius: 18px; background: var(--paper); color: var(--ink); padding: 18px;
+  border: 2px solid var(--edge); box-shadow: var(--shadow-hard);
   display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; }
 .daily-result .score .t-lbl { color: var(--ink3); }
 .daily-result .score .big { font-size: 44px; line-height: 1.05; margin-top: 4px; }
 .daily-result .score .streak { text-align: right; }
 .daily-result .score .streak .n { font-size: 24px; color: var(--ink); margin-top: 2px; }
 .daily-result .score .streak .t-cap { color: var(--ink2); }
-.daily-result .dr-list { list-style: none; border-radius: 14px; background: var(--g1); border: 1px solid var(--g2); overflow: hidden; }
-.daily-result .dr-list li + li { border-top: 1px solid var(--g2); }
+.daily-result .dr-list { list-style: none; padding: 0; overflow: hidden; }
+.daily-result .dr-list li + li { border-top: 1.5px dashed var(--sage); }
 .daily-result summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 22px auto 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; }
 .daily-result summary::-webkit-details-marker { display: none; }
-.daily-result .seq { color: var(--tx3); }
+.daily-result .seq { color: var(--ink3); }
 .daily-result .cat { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
 .daily-result .cat i { width: 8px; height: 8px; border-radius: 50%; }
-.daily-result .tac { font-size: 13px; color: var(--tx3); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.daily-result .ox { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 14px; }
-.daily-result .ox.ok { background: var(--y); color: var(--ink); }
-.daily-result .ox.no { box-shadow: inset 0 0 0 1.5px var(--red); color: var(--red-tx); }
+.daily-result .tac { font-size: 13px; color: var(--ink3); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.daily-result .ox { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 14px; border: 1.5px solid var(--edge); }
+.daily-result .ox.ok { background: var(--sage); color: var(--ink); }
+.daily-result .ox.no { background: var(--ivory2); color: var(--red); }
 .daily-result .body { padding: 0 14px 14px; }
-.daily-result .ck { border-radius: 12px; background: var(--y); color: var(--ink); padding: 10px 12px; }
+.daily-result .ck { border-radius: 12px; background: var(--mint); color: var(--ink); padding: 10px 12px; border: 1.5px solid var(--edge); }
 .daily-result .ck .t-lbl { color: var(--ink2); }
 .daily-result .ck .v { font-size: 17px; font-weight: 800; letter-spacing: -0.03em; margin-top: 2px; }
-.daily-result .exp { font-size: 14px; color: var(--tx2); margin: 8px 0 4px; line-height: 1.6; }
+.daily-result .exp { font-size: 14px; color: var(--ink2); margin: 8px 0 4px; line-height: 1.6; }

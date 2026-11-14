@@ -1,6 +1,9 @@
 .nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: var(--app-w); z-index: 30;
-  display: grid; grid-template-columns: repeat(4, 1fr); padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
-  background: rgba(5, 31, 32, 0.96); backdrop-filter: blur(10px); border-top: 1px solid var(--g2); }
-.nav a { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11.5px; font-weight: 600; color: var(--tx3); padding: 4px 0; text-decoration: none; }
-.nav svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.nav a.on { color: var(--y); }
+  display: grid; grid-template-columns: repeat(4, 1fr); padding: 8px 6px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(5, 31, 32, 0.97); backdrop-filter: blur(10px); border-top: 1.5px solid var(--g2); }
+.nav a { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11.5px; font-weight: 700;
+  color: var(--sage); padding: 4px 0 8px; text-decoration: none; }
+.nav svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nav a.on { color: var(--ivory); }
+/* 현재 탭 표시: 노란 막대 */
+.nav a.on::after { content: ''; position: absolute; bottom: 0; width: 22px; height: 4px; border-radius: 2px; background: var(--yellow); }

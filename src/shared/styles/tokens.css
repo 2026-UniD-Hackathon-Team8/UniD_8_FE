@@ -5,7 +5,7 @@
 /* 웹폰트(Courier Prime, Pretendard)는 index.html 의 <link> 로 불러옵니다. */
 
 :root {
-  /* 배경 (어두운 순) */
+  /* 배경 (어두운 순). 하단 탭 화면 바탕은 --g1 */
   --g0: #051f20;
   --g1: #0b2b26;
   --g2: #163832;
@@ -27,6 +27,30 @@
   --ink: #10201c;
   --ink2: #46514c;
   --ink3: #848b86;
+
+  /* 밝은 면 (아이보리 · 민트) — 카드·밝은 화면 바탕 */
+  --paper: #fffdf7;      /* 카드 */
+  --ivory: #faf6ec;      /* 밝은 바탕 */
+  --ivory2: #f3ecdb;     /* 구분용 아이보리 (틀린 칸, 오답 보드) */
+  --mint: #daf1de;       /* 민트 바탕·연한 강조 */
+  --sage: #8eb69b;       /* 체크·보조 글씨 (어두운 바탕 위) */
+  --yellow: #ffc83d;     /* 포인트 점·압정 */
+  /* 테두리·밀린 그림자 (오려 붙인 종이 느낌) */
+  --edge: #051f20;
+  --shadow-hard: 4px 4px 0 var(--edge);
+  --shadow-hard-sm: 3px 3px 0 var(--edge);
+  /* 짙은 초록 원색 — 밝은 면 안에서 --g* 가 바뀌어도 그대로 쓰는 값 */
+  --d1: #0b2b26;
+  --d2: #163832;
+  --d3: #235347;
+
+  /* 무늬 */
+  --pat-gingham: repeating-linear-gradient(0deg, rgba(142, 182, 155, 0.45) 0 14px, transparent 14px 28px),
+    repeating-linear-gradient(90deg, rgba(142, 182, 155, 0.45) 0 14px, transparent 14px 28px), #daf1de;
+  --pat-gingham-soft: repeating-linear-gradient(0deg, rgba(142, 182, 155, 0.2) 0 16px, transparent 16px 32px),
+    repeating-linear-gradient(90deg, rgba(142, 182, 155, 0.2) 0 16px, transparent 16px 32px), #daf1de;
+  --pat-grid: linear-gradient(rgba(142, 182, 155, 0.35) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(142, 182, 155, 0.35) 1px, transparent 1px) 0 0 / 22px 22px;
 
   /* 5계열 색 (유형 색과 동일) */
   --c-evidence: #3b82f6;

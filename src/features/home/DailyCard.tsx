@@ -29,14 +29,19 @@ export default function DailyCard({ daily, streak }: Props) {
   const label = done ? '오늘 완료 · 내일 또 만나요' : daily.solvedCount > 0 ? '데일리 이어 하기' : '오늘의 5문제 풀기'
 
   return (
-    <section className="blk">
+    <section className="card daily">
       <div className="hd">
         <h2 className="t-h2">오늘의 5문제</h2>
         <span className="st type">{done ? `${total} / ${total} 완료` : `${daily.solvedCount} / ${total}`}</span>
       </div>
-      <p className="t-cap mt4">
-        연속 <b className="streak-n num">{streak.current}일</b> · 최장 {streak.longest}일 · 하루 한 번 끝내면 1일 늘어요
-      </p>
+      <div className="streak-strip">
+        <b className="num">{streak.current}일</b>
+        <span>
+          연속 학습 중 · 최장 {streak.longest}일
+          <br />
+          {streak.completedToday ? '오늘 학습 완료!' : `오늘 끝내면 ${streak.current + 1}일!`}
+        </span>
+      </div>
 
       <div className="slots">
         {Array.from({ length: total }, (_, i) => {

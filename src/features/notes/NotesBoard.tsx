@@ -42,7 +42,7 @@ function drawYarn(board: HTMLDivElement, svg: SVGSVGElement) {
     const len = Math.hypot(x2 - x1, y2 - y1)
     const mx = (x1 + x2) / 2
     const my = (y1 + y2) / 2 + Math.min(60, len * 0.2)
-    d += `<path d="M${x1} ${y1}Q${mx} ${my} ${x2} ${y2}" stroke="var(--y)" stroke-width="1.6" fill="none" opacity=".8"/>`
+    d += `<path d="M${x1} ${y1}Q${mx} ${my} ${x2} ${y2}" stroke="var(--d3)" stroke-width="2" stroke-dasharray="6 5" fill="none"/>`
   })
   svg.innerHTML = d
 }
