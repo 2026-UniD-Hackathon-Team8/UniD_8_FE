@@ -1,6 +1,6 @@
 // 랭킹 API
 //   연승 랭킹: GET /api/rankings?size=20 — 최고 연승 내림차순, 같으면 먼저 달성한 순, 동점은 같은 순위
-//   데일리 랭킹: GET /api/rankings/daily?size=20 — 오늘의 5문제 연속 학습 일수 순 (백엔드에 아직 없음, 제안한 형태)
+//   데일리 랭킹: GET /api/rankings/daily?size=20 — 오늘의 5문제 현재 연속 학습 일수 순, 같으면 최장 기록 순
 import { mockDelay, request, USE_MOCK } from '../../shared/api/http'
 import { getNickname } from '../../shared/store/guest'
 
