@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200" aria-label="논리 착시형">
+<!-- 논리 착시형 · 다믿어? 수사 일지 캐릭터 모션 -->
+<style>.log-sp{animation:log-sp 1.1s linear infinite}
+@keyframes log-sp{to{transform:rotate(360deg)}}
+.log-bd{animation:log-bd 2.2s ease-in-out infinite;transform-origin:50px 90px}
+@keyframes log-bd{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.log-yn{stroke-dasharray:6 4;animation:log-yn 1.4s linear infinite}
+@keyframes log-yn{to{stroke-dashoffset:-20}}
+.log-pn{animation:log-pn 1.1s ease-in-out infinite}
+@keyframes log-pn{0%,100%{r:2.6}50%{r:3.4}}</style>
+<g class="log-bd"><path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#C72F7A" stroke-width="17" fill="none" stroke-linecap="round" transform="translate(2.5 2.5)"/>
+    <path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#EC4899" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="52.5" cy="85.5" r="8.5" fill="#C72F7A"/><circle cx="50" cy="83" r="8.5" fill="#EC4899"/><circle cx="42" cy="23" r="5" fill="#fff"/><g class="log-sp" style="transform-origin:42px 23px"><path d="M42 23m-.1 0a.9.9 0 1 1 .9.9a2 2 0 1 1-2-2a3.2 3.2 0 1 1 3.2 3.2" stroke="#141414" stroke-width="1.15" fill="none"/></g><circle cx="58" cy="23" r="5" fill="#fff"/><g class="log-sp" style="transform-origin:58px 23px"><path d="M58 23m-.1 0a.9.9 0 1 1 .9.9a2 2 0 1 1-2-2a3.2 3.2 0 1 1 3.2 3.2" stroke="#141414" stroke-width="1.15" fill="none"/></g></g>
+<path class="log-yn" d="M8 74C18 62 24 86 32 72S46 60 40 69 60 84 64 72 82 62 92 76" stroke="#FFC83D" stroke-width="2" fill="none"/>
+<circle class="log-pn" cx="8" cy="74" r="2.6" fill="#FFC83D"/><circle class="log-pn" cx="92" cy="76" r="2.6" fill="#FFC83D"/>
+</svg>
