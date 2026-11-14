@@ -22,7 +22,7 @@ function MemoReport({ items, memoCount }: { items: WrongAnswerItem[]; memoCount:
         <div className="t-lbl">오답 메모</div>
         <div className="r">
           문제 카드를 눌러 “왜 이 답을 믿었는지” 메모를 남겨 보세요. 3개가 모이면 ‘믿은 근거 vs 실제 수법’ 리포트가
-          열려요. <b>({Math.min(memoCount, 3)}/3)</b>
+          열려요. <b className="num">({Math.min(memoCount, 3)}/3)</b>
         </div>
       </div>
     )
@@ -41,11 +41,11 @@ function MemoReport({ items, memoCount }: { items: WrongAnswerItem[]; memoCount:
         “{top.r}” 믿은 문제가 {top.list.length}개
       </div>
       <div className="r">
-        그때 실제 수법 → <b>{tactics.join(', ')}</b>
+        그때 실제 수법 → <b className="type">{tactics.join(', ')}</b>
       </div>
       {others.map((x) => (
         <div className="r" key={x.it.questionId}>
-          · {x.reason} → {x.it.tacticName}
+          · {x.reason} → <span className="type">{x.it.tacticName}</span>
         </div>
       ))}
       <div className="r strong">믿은 이유가 곧 속은 지점이에요.</div>

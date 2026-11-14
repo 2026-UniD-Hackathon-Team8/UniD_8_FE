@@ -32,10 +32,10 @@ export default function DailyCard({ daily, streak }: Props) {
     <section className="blk">
       <div className="hd">
         <h2 className="t-h2">오늘의 5문제</h2>
-        <span className="st">{done ? `${total} / ${total} 완료` : `${daily.solvedCount} / ${total}`}</span>
+        <span className="st type">{done ? `${total} / ${total} 완료` : `${daily.solvedCount} / ${total}`}</span>
       </div>
       <p className="t-cap mt4">
-        연속 <b className="streak-n">{streak.current}일</b> · 최장 {streak.longest}일 · 하루 한 번 끝내면 1일 늘어요
+        연속 <b className="streak-n num">{streak.current}일</b> · 최장 {streak.longest}일 · 하루 한 번 끝내면 1일 늘어요
       </p>
 
       <div className="slots">
