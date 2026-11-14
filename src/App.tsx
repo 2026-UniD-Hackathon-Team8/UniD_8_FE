@@ -9,6 +9,8 @@ import NotesPage from './features/notes/NotesPage'
 import RankingPage from './features/ranking/RankingPage'
 import StartPage from './features/start/StartPage'
 import { PlayPage, StreakPage, WeakPlayPage } from './features/game/routes'
+import { ProfileScreen } from './features/profile'
+import { ResultScreen } from './features/result'
 import AppLayout from './shared/layouts/AppLayout'
 
 function Placeholder({ name }: { name: string }) {
@@ -30,14 +32,14 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="/rankings" element={<RankingPage />} />
           <Route path="/notes" element={<NotesPage />} />
-          <Route path="/profile" element={<Placeholder name="마이페이지" />} />
+          <Route path="/profile" element={<ProfileScreen />} />
         </Route>
         {/* 문제 풀이·결과 화면 (하단 탭 없음) */}
         <Route path="/daily" element={<Placeholder name="오늘의 5문제" />} />
         <Route path="/play" element={<PlayPage />} />
         <Route path="/play/weak" element={<WeakPlayPage />} />
         <Route path="/streak" element={<StreakPage />} />
-        <Route path="/games/:gameSessionId/result" element={<Placeholder name="실전 결과" />} />
+        <Route path="/games/:gameSessionId/result" element={<ResultScreen />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
