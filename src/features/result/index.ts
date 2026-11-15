@@ -1,0 +1,10 @@
+// 판 결과 공개 모듈
+export * from './api/types'
+export { getGameResult } from './api/resultApi'
+export * from './constants'
+export { mostWrongCatKey, strongCatKeys, wrongCountByCat } from './lib/resultView'
+export { DETECTIVE_MAX_WRONG, judgeResultType } from './lib/judgeType'
+export { shareResult, shareText } from './lib/share'
+export { MOCK_RESULT_PERFECT, MOCK_RESULT_WEAK, getMockGameResult, setMockResult } from './mock/resultMock'
+export { useGameResult } from './hooks/useGameResult'
+export { ResultScreen } from './screens/ResultScreen'

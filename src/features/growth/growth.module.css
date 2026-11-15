@@ -1,0 +1,264 @@
+/* 나의 성장·데일리 달력. 색은 디자인 토큰(src/shared/styles/tokens.css)만 쓴다. */
+
+.section {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 28px 0 12px;
+}
+.sectionCap {
+  margin-left: auto;
+}
+
+/* ---------- 데일리 달력 (PF_05) ---------- */
+.weekHead,
+.heat {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+.weekHead {
+  margin-top: 12px;
+  font-size: var(--fs-lbl);
+  font-weight: 700;
+  color: var(--tx3);
+  text-align: center;
+}
+.heat {
+  margin-top: 6px;
+}
+.cell {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--g2);
+}
+/* 맞힌 개수 → 한 색(--y)의 진하기. 0~2 / 3~4 / 5 */
+.l1 { background: color-mix(in srgb, var(--y) 28%, var(--g2)); }
+.l2 { background: color-mix(in srgb, var(--y) 60%, var(--g2)); }
+.l3 { background: var(--y); }
+.future { opacity: 0.25; }
+.today { box-shadow: 0 0 0 1.5px var(--tx2); }
+.cell:hover,
+.cell:focus-visible {
+  outline: 2px solid var(--tx2);
+  outline-offset: 1px;
+  z-index: 1;
+}
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  justify-content: flex-end;
+  font-size: var(--fs-lbl);
+  color: var(--tx3);
+}
+.legend .cell {
+  width: 11px;
+  aspect-ratio: 1;
+}
+.legendGap {
+  width: 4px;
+}
+
+/* ---------- 요약 ---------- */
+.headline {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.headline b {
+  color: var(--y);
+}
+.note {
+  font-size: var(--fs-cap);
+  color: var(--tx2);
+  margin-top: 4px;
+}
+.weak {
+  font-size: var(--fs-cap);
+  color: var(--y);
+  margin-top: 2px;
+}
+
+/* ---------- 점수 추이 차트 ---------- */
+.chartHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 16px;
+}
+.key {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+  font-size: var(--fs-lbl);
+  color: var(--tx2);
+}
+.chartWrap {
+  position: relative;
+  margin-top: 8px;
+}
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: pan-y;
+}
+.grid {
+  stroke: var(--g2);
+  stroke-width: 1;
+}
+.axisText {
+  fill: var(--tx3);
+  font-size: 11px;
+}
+.line {
+  fill: none;
+  stroke: var(--y);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+/* 실전: 꽉 찬 점(바탕색 테두리로 선과 떼어 놓음) / 데일리: 속이 빈 고리 */
+.dotGame {
+  fill: var(--y);
+  stroke: var(--g1);
+  stroke-width: 1.5;
+}
+.dotDaily {
+  fill: var(--g1);
+  stroke: var(--y);
+  stroke-width: 2;
+}
+.dotActive.dotGame {
+  stroke: var(--tx);
+  stroke-width: 2;
+}
+.cross {
+  stroke: var(--tx3);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.tip {
+  position: absolute;
+  top: -6px;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  white-space: nowrap;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: var(--g3);
+  color: var(--tx);
+  font-size: var(--fs-lbl);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.35);
+}
+.tipBelow {
+  transform: translate(-50%, 0);
+}
+.tip span {
+  display: block;
+  font-weight: 500;
+  color: var(--tx2);
+}
+
+/* ---------- 계열별 정답률 ---------- */
+.pairs {
+  display: grid;
+  gap: 14px;
+}
+.pair {
+  display: grid;
+  grid-template-columns: 34px 1fr 104px;
+  gap: 10px;
+  align-items: center;
+  font-size: var(--fs-cap);
+  font-weight: 700;
+  color: var(--tx2);
+}
+.bars {
+  display: grid;
+  gap: 3px;
+}
+.track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--g2);
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+  border-radius: 3px;
+}
+.barEarly {
+  background: var(--tx3);
+}
+.val {
+  font-size: var(--fs-lbl);
+  text-align: right;
+
+}
+.val b {
+  color: var(--tx);
+}
+.up {
+  color: var(--y);
+  font-weight: 800;
+}
+
+/* ---------- 지나온 유형 ---------- */
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  background: var(--g1);
+  border: 1px solid var(--g2);
+  font-size: var(--fs-cap);
+  font-weight: 700;
+}
+.arrow {
+  color: var(--tx3);
+  font-style: normal;
+}
+
+/* ---------- 잠김·불러오기 ---------- */
+.locked {
+  text-align: center;
+  padding: 26px 16px;
+}
+.lockedBig {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--y);
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- 포인트 글꼴: 숫자만 타자기체 (본문은 Pretendard) ---------- */
+.val,
+.axisText,
+.lockedBig,
+.tip {
+  font-family: var(--font-type);
+}
+.tip span {
+  font-family: var(--font);
+}

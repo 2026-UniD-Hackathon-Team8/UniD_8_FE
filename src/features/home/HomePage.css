@@ -1,0 +1,46 @@
+/* 홈 전용 스타일 — 짙은 초록 바탕 위 아이보리 카드 */
+
+/* 실전: 깅엄 체크 액자 안에 종이 카드 */
+.hero { margin-top: 18px; padding: 14px; border-radius: 18px; background: var(--pat-gingham); border: 2px solid var(--edge); box-shadow: var(--shadow-hard); }
+.hero-inner { background: var(--paper); border: 2px solid var(--edge); border-radius: 14px; padding: 14px 16px; }
+.hero .t-h1 { margin-top: 4px; font-size: 22px; line-height: 1.28; }
+.hero .btn { margin-top: 14px; }
+
+/* 오늘의 5문제 */
+.daily { margin-top: 16px; }
+.daily .hd { display: flex; align-items: baseline; gap: 8px; }
+.daily .hd .t-h2 { flex: 1; font-weight: 800; }
+.daily .hd .st { font-size: 17px; font-weight: 800; color: var(--ink); }
+.daily .btn { margin-top: 14px; }
+/* 연속 기록 띠 */
+.streak-strip { display: flex; align-items: center; gap: 12px; margin-top: 10px; padding: 10px 14px; border-radius: 12px; background: var(--d2); }
+.streak-strip b { font-size: 26px; color: var(--ivory); white-space: nowrap; }
+.streak-strip span { font-size: 13px; line-height: 1.4; color: var(--mint); }
+
+.slots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+.slot { height: 54px; display: grid; place-content: center; border-radius: 12px; border: 2px solid var(--edge); background: var(--paper);
+  text-align: center; font-family: var(--font-type); font-weight: 700; font-size: 15px; line-height: 1.1; color: var(--ink); }
+.slot small { display: block; margin-top: 2px; font-family: var(--font); font-size: 10.5px; font-weight: 700; color: var(--ink2); }
+.slot.ok { background: var(--sage); }
+.slot.no { background: var(--ivory2); }
+.slot.solved { background: var(--mint); }
+.slot.next { background: var(--mint); box-shadow: 2px 2px 0 var(--edge); }
+
+/* 이번 주 7칸 */
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 12px; }
+.week div { text-align: center; font-size: 11px; font-weight: 700; color: var(--ink3); }
+.week b { display: block; height: 22px; margin-top: 4px; border-radius: 6px; border: 1.5px solid var(--edge); background: var(--paper); }
+.week b.on { background: var(--d3); }
+.week b.today { background: var(--mint); border-style: dashed; }
+
+/* 연승 챌린지 · 약점 재도전 두 칸 */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.mini { display: block; width: 100%; text-align: left; padding: 14px; }
+.mini .t-h2 { font-size: 15px; font-weight: 800; }
+.mini .big { margin-top: 6px; font-size: 28px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.15; }
+.mini .big small { font-size: 14px; margin-left: 1px; }
+.mini .t-cap { margin-top: 4px; font-size: 11.5px; }
+.mini.run { background: #fff; }
+.mini.weak { background: var(--mint); }
+.mini.weak .big { font-size: 22px; margin-top: 10px; }
+.mini:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--edge); }

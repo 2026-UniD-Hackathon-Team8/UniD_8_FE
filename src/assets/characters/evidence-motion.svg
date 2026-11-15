@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200" aria-label="근거 맹신형">
+<!-- 근거 맹신형 · 다믿어? 수사 일지 캐릭터 모션 -->
+<style>.evi-bl{animation:evi-bl 3.2s linear infinite}
+@keyframes evi-bl{0%,86%{transform:scaleY(1)}88%{transform:scaleY(.12)}90%,100%{transform:scaleY(1)}}
+.evi-bd{animation:evi-bd 1.6s ease-in-out infinite}
+@keyframes evi-bd{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.4px)}}
+.evi-pp{animation:evi-pp 1.6s ease-in-out infinite;transform-origin:24px 80px}
+@keyframes evi-pp{0%,100%{transform:rotate(0) translateY(0)}50%{transform:rotate(-4deg) translateY(-1.6px)}}
+.evi-st{animation:evi-st 1.6s ease-in-out infinite;transform-origin:74px 14px}
+@keyframes evi-st{0%,100%{transform:scale(.7) rotate(0);opacity:.6}50%{transform:scale(1.25) rotate(45deg);opacity:1}}
+.evi-gl{animation:evi-gl .8s steps(1) infinite}
+@keyframes evi-gl{0%{r:1.1}50%{r:1.7}}
+.evi-nm{animation:evi-nm 1.6s ease-in-out infinite}
+@keyframes evi-nm{0%,100%{opacity:1}50%{opacity:.55}}</style>
+<g class="evi-st"><path d="M74 7l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FFC83D"/></g>
+<g class="evi-bd"><path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#2563C9" stroke-width="17" fill="none" stroke-linecap="round" transform="translate(2.5 2.5)"/>
+    <path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#3B82F6" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="52.5" cy="85.5" r="8.5" fill="#2563C9"/><circle cx="50" cy="83" r="8.5" fill="#3B82F6"/><g class="evi-bl" style="transform-origin:42px 23px"><circle cx="42" cy="23" r="4.6" fill="#fff"/><g class="evi-pu"><circle cx="42.8" cy="23.6" r="2.2079999999999997" fill="#141414"/><circle class="evi-gl" cx="41" cy="21.6" r="1.1" fill="#fff"/></g></g><g class="evi-bl" style="transform-origin:58px 23px"><circle cx="58" cy="23" r="4.6" fill="#fff"/><g class="evi-pu"><circle cx="58.8" cy="23.6" r="2.2079999999999997" fill="#141414"/><circle class="evi-gl" cx="57" cy="21.6" r="1.1" fill="#fff"/></g></g></g>
+<g class="evi-pp"><g transform="rotate(-9 24 66)"><rect x="12" y="52" width="26" height="32" rx="2" fill="#d9d5c8"/><rect x="9" y="49" width="26" height="32" rx="2" fill="#f3f1ea"/>
+<rect x="13" y="55" width="17" height="2.4" fill="#cfcabb"/><rect x="13" y="60" width="13" height="2.4" fill="#cfcabb"/>
+<text class="evi-nm" x="13" y="73" font-size="7.5" font-weight="700" font-family="Courier Prime,monospace" fill="#2563C9">73.4%</text></g></g>
+</svg>

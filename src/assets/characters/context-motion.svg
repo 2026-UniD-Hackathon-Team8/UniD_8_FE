@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200" aria-label="맥락 놓침형">
+<!-- 맥락 놓침형 · 다믿어? 수사 일지 캐릭터 모션 -->
+<style>.con-bl{animation:con-bl 3.4s linear infinite}
+@keyframes con-bl{0%,70%{transform:scaleY(1)}72%{transform:scaleY(.12)}74%,100%{transform:scaleY(1)}}
+.con-bd{animation:con-bd 2.4s ease-in-out infinite;transform-origin:50px 90px}
+@keyframes con-bd{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg)}}
+.con-lz{animation:con-lz 2.4s ease-in-out infinite;transform-origin:60px 24px}
+@keyframes con-lz{0%,100%{transform:translate(0,0) scale(1)}45%,60%{transform:translate(-1.5px,-.5px) scale(1.16)}}
+.con-pu{animation:con-pu 2.4s ease-in-out infinite}
+@keyframes con-pu{0%,100%{transform:translate(0,0)}30%{transform:translate(1.6px,-.8px)}65%{transform:translate(-1.4px,1px)}}
+.con-ms{animation:con-ms 1.2s linear infinite,con-mo 2.4s ease-in-out infinite}
+@keyframes con-ms{to{stroke-dashoffset:-11}}
+@keyframes con-mo{0%,100%{opacity:1}50%{opacity:.35}}
+.con-dc{animation:con-dc 2.4s ease-in-out infinite;transform-origin:20px 84px}
+@keyframes con-dc{0%,100%{transform:rotate(0)}50%{transform:rotate(-3deg)}}</style>
+<g class="con-bd"><path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#6D3FD6" stroke-width="17" fill="none" stroke-linecap="round" transform="translate(2.5 2.5)"/>
+    <path d="M33 34C33 16 67 15 67 34C67 48 50 50 50 63" stroke="#8B5CF6" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <circle cx="52.5" cy="85.5" r="8.5" fill="#6D3FD6"/><circle cx="50" cy="83" r="8.5" fill="#8B5CF6"/><g class="con-bl" style="transform-origin:42px 23px"><circle cx="42" cy="23" r="4.6" fill="#fff"/><g class="con-pu"><circle cx="42.8" cy="23.6" r="2.2079999999999997" fill="#141414"/></g></g>
+<g class="con-lz"><g class="con-bl" style="transform-origin:59px 24px"><circle cx="59" cy="24" r="6.8" fill="#fff"/><g class="con-pu"><circle cx="59.8" cy="24.6" r="3.264" fill="#141414"/></g></g>
+<circle cx="60" cy="24" r="11" fill="rgba(255,255,255,.28)" stroke="#141414" stroke-width="3"/><path d="M68 32l10 12" stroke="#141414" stroke-width="5" stroke-linecap="round"/></g></g>
+<g class="con-dc"><path d="M9 56h18l6 6v22H9z" fill="#f3f1ea"/><path d="M27 56v6h6" fill="#d9d5c8"/><rect x="13" y="66" width="14" height="2.2" fill="#cfcabb"/></g>
+<rect class="con-ms" x="80" y="62" width="14" height="20" rx="1.5" fill="none" stroke="#8a8780" stroke-width="1.6" stroke-dasharray="3 2.5"/>
+</svg>

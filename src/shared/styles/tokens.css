@@ -1,0 +1,81 @@
+/* =========================================================
+   다믿어? 디자인 토큰 — 색·서체·글자 크기는 여기서만 정의합니다.
+   모든 화면(A·B·C 파트)은 이 변수만 사용하세요. (색 코드 직접 입력 금지)
+   ========================================================= */
+/* 웹폰트(Courier Prime, Pretendard)는 index.html 의 <link> 로 불러옵니다. */
+
+:root {
+  /* 배경 (어두운 순). 하단 탭 화면 바탕은 --g1 */
+  --g0: #051f20;
+  --g1: #0b2b26;
+  --g2: #163832;
+  --g3: #235347;
+
+  /* 강조색 · 종이색 */
+  --y: #fff7e6;          /* 강조(크림) */
+  --y2: #e8dcc4;
+  --y-l: rgba(255, 247, 230, 0.12);
+  --white: #f3f1ea;      /* 카드·종이 */
+  --red: #e5484d;        /* 오답·잘못된 쪽 */
+  --red-tx: #ff8d90;
+
+  /* 글자색 — 어두운 배경 위 */
+  --tx: #f3f1ea;
+  --tx2: #b7c7bf;
+  --tx3: #7d978c;
+  /* 글자색 — 밝은 카드 위 */
+  --ink: #10201c;
+  --ink2: #46514c;
+  --ink3: #848b86;
+
+  /* 밝은 면 (아이보리 · 민트) — 카드·밝은 화면 바탕 */
+  --paper: #fffdf7;      /* 카드 */
+  --ivory: #faf6ec;      /* 밝은 바탕 */
+  --ivory2: #f3ecdb;     /* 구분용 아이보리 (틀린 칸, 오답 보드) */
+  --mint: #daf1de;       /* 민트 바탕·연한 강조 */
+  --sage: #8eb69b;       /* 체크·보조 글씨 (어두운 바탕 위) */
+  --yellow: #ffc83d;     /* 포인트 점·압정 */
+  /* 테두리·밀린 그림자 (오려 붙인 종이 느낌) */
+  --edge: #051f20;
+  --shadow-hard: 4px 4px 0 var(--edge);
+  --shadow-hard-sm: 3px 3px 0 var(--edge);
+  /* 짙은 초록 원색 — 밝은 면 안에서 --g* 가 바뀌어도 그대로 쓰는 값 */
+  --d1: #0b2b26;
+  --d2: #163832;
+  --d3: #235347;
+
+  /* 무늬 */
+  --pat-gingham: repeating-linear-gradient(0deg, rgba(142, 182, 155, 0.45) 0 14px, transparent 14px 28px),
+    repeating-linear-gradient(90deg, rgba(142, 182, 155, 0.45) 0 14px, transparent 14px 28px), #daf1de;
+  --pat-gingham-soft: repeating-linear-gradient(0deg, rgba(142, 182, 155, 0.2) 0 16px, transparent 16px 32px),
+    repeating-linear-gradient(90deg, rgba(142, 182, 155, 0.2) 0 16px, transparent 16px 32px), #daf1de;
+  --pat-grid: linear-gradient(rgba(142, 182, 155, 0.35) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(142, 182, 155, 0.35) 1px, transparent 1px) 0 0 / 22px 22px;
+
+  /* 5계열 색 (유형 색과 동일) */
+  --c-evidence: #3b82f6;
+  --c-context: #8b5cf6;
+  --c-logic: #ec4899;
+  --c-time: #14b8a6;
+  --c-question: #f97316;
+  --c-detective: #ffc83d;
+
+  /* 서체: 본문은 Pretendard. Courier Prime(타자기)은 숫자·수법 이름 같은 포인트에만 (.num, .type)
+     Courier Prime이 1순위면 한글 사이 공백까지 Courier 폭으로 넓어져서 본문에서는 뺐다 */
+  --font: Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --font-type: 'Courier Prime', Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif;
+
+  /* 글자 크기 위계 */
+  --fs-h1: 24px;   /* 화면 제목 */
+  --fs-q: 20px;    /* 문제 */
+  --fs-h2: 18px;   /* 섹션 제목 */
+  --fs-spec: 16px; /* 선택지 */
+  --fs-body: 15px; /* 본문 */
+  --fs-cap: 13px;  /* 보조 설명 */
+  --fs-lbl: 12px;  /* 라벨 */
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --app-w: 460px;
+  --nav-h: 64px;
+}
